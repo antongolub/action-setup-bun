@@ -1,3 +1,8 @@
+## [1.0.8](https://github.com/antongolub/action-setup-bun/compare/v1.0.7...v1.0.8) (2022-07-09)
+
+### Fixes & improvements
+* fix: debug ([1334bb5](https://github.com/antongolub/action-setup-bun/commit/1334bb567fe2d942279863472cd1e642d9dda86e))
+
 ## [1.0.7](https://github.com/antongolub/action-setup-bun/compare/v1.0.6...v1.0.7) (2022-07-09)
 
 ### Fixes & improvements

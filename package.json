@@ -6,7 +6,7 @@
   "main": "./target/index.js",
   "scripts": {
     "build": "ncc build src/main/js/main.js -o target",
-    "test": "exit 0",
+    "test": "node src/test/js/install.test.js",
     "docs": "mkdir -p docs && cp ./README.md ./docs/README.md"
   },
   "files": [
@@ -33,5 +33,8 @@
     "@actions/http-client": "^2.0.1",
     "@vercel/ncc": "^0.34.0",
     "semver": "^7.3.7"
+  },
+  "devDependencies": {
+    "uvu": "^0.5.6"
   }
 }

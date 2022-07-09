@@ -2,11 +2,15 @@
   "name": "action-setup-bun",
   "version": "1.0.1",
   "description": "Setup GitHub Actions workflow with a specific version of Bun",
-  "main": "./src/main/js/index.js",
+  "main": "./target/index.js",
   "scripts": {
+    "build": "ncc build src/main/js/main.js -o target",
     "test": "echo \"Error: no test specified\" && exit 0",
     "docs": "mkdir -p docs && cp ./README.md ./docs/README.md"
   },
+  "files": [
+    "target"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/antongolub/actions-setup-bun.git"
@@ -24,6 +28,7 @@
   "homepage": "https://github.com/antongolub/actions-setup-bun#readme",
   "dependencies": {
     "@actions/core": "^1.9.0",
-    "@actions/exec": "^1.1.1"
+    "@actions/exec": "^1.1.1",
+    "@vercel/ncc": "^0.34.0"
   }
 }

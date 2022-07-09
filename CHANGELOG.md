@@ -1,3 +1,8 @@
+## [1.0.5](https://github.com/antongolub/action-setup-bun/compare/v1.0.4...v1.0.5) (2022-07-09)
+
+### Fixes & improvements
+* fix: update bundle ([6ca551d](https://github.com/antongolub/action-setup-bun/commit/6ca551d1981c02c9751a8bb222732fdeaa2463da))
+
 ## [1.0.4](https://github.com/antongolub/action-setup-bun/compare/v1.0.3...v1.0.4) (2022-07-09)
 
 ### Fixes & improvements

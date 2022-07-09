@@ -3299,7 +3299,9 @@ const setup = async (version) => {
 
   const res = await exec.getExecOutput('bash', args, { ignoreReturnCode: true})
 
-  if (res.stderr) throw res.stderr
+  await exec.exec('echo "/home/runner/.bun/bin:" >> $GITHUB_PATH')
+
+  // if (res.stderr) throw res.stderr
 
   // cp.execSync('exec bash')
 }
@@ -3465,7 +3467,7 @@ async function main() {
     await setup(version)
 
   } catch (e) {
-    core.setOutput("error_message", error.message)
+    core.setOutput("error_message", e.message)
     core.setFailed(e.message)
   }
 }

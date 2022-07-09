@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Fetched from https://bun.sh/install
+# https://github.com/Jarred-Sumner/bun
+
 # Reset
 Color_Off=''
 

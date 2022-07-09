@@ -1,5 +1,5 @@
 const core = require('@actions/core')
-const exec = require("@actions/exec");
+const exec = require("@actions/exec")
 const path = require('path')
 
 const installSh = path.resolve(__dirname, '../../main/sh/install.sh')
@@ -7,9 +7,9 @@ const setup = async (version) => {
   const args = [installSh]
   if (version) args.push(version)
 
-  const res = await exec.getExecOutput('bash', args, { ignoreReturnCode: true})
+  const {stdout} = await exec.getExecOutput('bash', args)
 
-  return /.*BUN_INSTALL="([^"]+)"/.exec(res.stdout.trim())[1]
+  return /.*BUN_INSTALL="([^"]+)"/.exec(stdout.trim())[1]
 }
 
 async function main() {

@@ -3,11 +3,9 @@ description: 'Setup Bun Runtime'
 author: 'Anton Golub'
 inputs:
   bun-version:
-    description: 'Version Spec of the version to use. Examples: 0.0.77, 0.1.2, >=0.1'
+    description: 'Version Spec of the version to use. Examples: 0.0.77, 0.1.2'
     required: false
 
 runs:
   using: 'node16'
   main: 'target/index.js'
-  # post: 'dist/cache-save/index.js'
-  # post-if: success()

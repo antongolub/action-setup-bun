@@ -8,6 +8,6 @@ inputs:
 
 runs:
   using: 'node16'
-  main: 'src/main/js/index.js'
+  main: 'target/index.js'
   # post: 'dist/cache-save/index.js'
   # post-if: success()

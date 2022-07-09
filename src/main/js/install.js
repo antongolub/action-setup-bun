@@ -16,7 +16,7 @@ const pickVersion = async (range, repo) => {
   const tags = (await http.getJson(url)).result
   const version = tags.find(({name}) => semver.satisfies(name.replace('bun-', ''), range))
 
-  if (!version) throw new Error(`Version ${range} not found`)
+  if (!version) throw new Error(`Version ${range} not found in ${repo}`)
 
   return version.name
 }

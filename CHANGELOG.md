@@ -1,3 +1,8 @@
+## [1.0.3](https://github.com/antongolub/action-setup-bun/compare/v1.0.2...v1.0.3) (2022-07-09)
+
+### Fixes & improvements
+* fix: fix action entry point ([a62c788](https://github.com/antongolub/action-setup-bun/commit/a62c788499bb61fa2314d81293be1f965ce42806))
+
 ## [1.0.2](https://github.com/antongolub/action-setup-bun/compare/v1.0.1...v1.0.2) (2022-07-09)
 
 ### Fixes & improvements

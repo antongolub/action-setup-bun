@@ -1,5 +1,5 @@
 # action-setup-bun
-Setup GitHub Actions workflow with a specific version of [Bun](https://github.com/Jarred-Sumner/bun) and adds `BUN_INSTALL` to the `$PATH`.
+Setup GitHub Actions workflow with a specific version of [Bun](https://github.com/Jarred-Sumner/bun) and add `BUN_INSTALL` to the `$PATH`.
 
 ## Usage
 ```yaml

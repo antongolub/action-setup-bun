@@ -6411,7 +6411,7 @@ const pickVersion = async (range, repo) => {
   const tags = (await http.getJson(url)).result
   const version = tags.find(({name}) => semver.satisfies(name.replace('bun-', ''), range))
 
-  if (!version) throw new Error(`Version ${range} not found`)
+  if (!version) throw new Error(`Version ${range} not found in ${repo}`)
 
   return version.name
 }
@@ -6578,8 +6578,8 @@ const defaultRepo = 'Jarred-Sumner/bun-releases-for-updater'
 
 async function main() {
   try {
-    const range = core.getInput('version') || core.getInput('bun-version') || defaultVersion
-    const repo = core.getInput('repo') || defaultRepo
+    const range = core.getInput('bun-version') || core.getInput('version') || defaultVersion
+    const repo = core.getInput('bun-repo') || defaultRepo
     const version = await pickVersion(range, repo)
     const BUN_INSTALL = await install(version, repo)
 

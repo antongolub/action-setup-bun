@@ -1,3 +1,9 @@
+## [1.4.1](https://github.com/antongolub/action-setup-bun/compare/v1.4.0...v1.4.1) (2022-07-09)
+
+### Fixes & improvements
+* fix: rename `repo` to `bun-repo` option ([5775534](https://github.com/antongolub/action-setup-bun/commit/5775534342cc80fbdc413e5f2845c989df24c375))
+* docs: describe action outputs ([4ef0e37](https://github.com/antongolub/action-setup-bun/commit/4ef0e3789ec296bc38b21cd564df0baf0dee59d8))
+
 ## [1.4.0](https://github.com/antongolub/action-setup-bun/compare/v1.3.1...v1.4.0) (2022-07-09)
 
 ### Fixes & improvements

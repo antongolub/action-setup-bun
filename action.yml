@@ -8,6 +8,9 @@ inputs:
   version:
     description: 'Alias for bun-version option'
     required: false
+  repo:
+    description: 'GitHub release stream to use. Defaults to: Jarred-Sumner/bun-releases-for-updater'
+    required: false
 
 runs:
   using: 'node16'

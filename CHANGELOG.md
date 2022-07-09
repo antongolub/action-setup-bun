@@ -1,3 +1,8 @@
+## [1.1.0](https://github.com/antongolub/action-setup-bun/compare/v1.0.8...v1.1.0) (2022-07-09)
+
+### Features
+* feat: provide semver matcher ([ac066df](https://github.com/antongolub/action-setup-bun/commit/ac066df1e3e5762d6a22ca4687bb4edde06c8ff7))
+
 ## [1.0.8](https://github.com/antongolub/action-setup-bun/compare/v1.0.7...v1.0.8) (2022-07-09)
 
 ### Fixes & improvements

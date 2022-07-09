@@ -1,3 +1,8 @@
+## [1.3.1](https://github.com/antongolub/action-setup-bun/compare/v1.3.0...v1.3.1) (2022-07-09)
+
+### Fixes & improvements
+* fix: use bun-releases-for-updater channel to search versions ([e63c109](https://github.com/antongolub/action-setup-bun/commit/e63c1090b441b7625bd2185cc38dc0b4ec5255fa))
+
 ## [1.3.0](https://github.com/antongolub/action-setup-bun/compare/v1.2.2...v1.3.0) (2022-07-09)
 
 ### Features

@@ -20,12 +20,12 @@ const setup = async (range) => {
 const resolveVersion = async (reqVersion) => {
   if (!reqVersion) return null
 
-  const tags = (await http.getJson('https://api.github.com/repos/Jarred-Sumner/bun/tags')).result
-  const version = tags.find(({name}) => semver.satisfies(name, reqVersion))
+  const tags = (await http.getJson('https://api.github.com/repos/Jarred-Sumner/bun-releases-for-updater/tags')).result
+  const version = tags.find(({name}) => semver.satisfies(name.replace('bun-', ''), reqVersion))
 
   if (!version) throw new Error(`Version ${reqVersion} not found`)
 
-  return semver.clean(version.name)
+  return version.name
 }
 
 async function main() {

@@ -104,5 +104,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_COMMITTER_EMAIL: 'antongolub@antongolub.com'
-          GIT_COMMITTER_NAME: 'antongolub'
+          GIT_COMMITTER_NAME: 'Anton Golub'
+          GH_USER: 'antongolub'
+          PUSH_MAJOR_TAG: true
         run: npm_config_yes=true npx zx-semrel

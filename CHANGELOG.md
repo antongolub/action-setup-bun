@@ -1,3 +1,8 @@
+## [1.0.4](https://github.com/antongolub/action-setup-bun/compare/v1.0.3...v1.0.4) (2022-07-09)
+
+### Fixes & improvements
+* fix: update env.GITHUB_PATH ([914c7d9](https://github.com/antongolub/action-setup-bun/commit/914c7d9e6f026b0cb080bd75fd73adc4571307e0))
+
 ## [1.0.3](https://github.com/antongolub/action-setup-bun/compare/v1.0.2...v1.0.3) (2022-07-09)
 
 ### Fixes & improvements

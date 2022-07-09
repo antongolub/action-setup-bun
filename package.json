@@ -1,0 +1,27 @@
+{
+  "name": "action-setup-bun",
+  "version": "0.0.1",
+  "description": "Setup GitHub Actions workflow with a specific version of Bun",
+  "main": "./src/main/js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antongolub/actions-setup-bun.git"
+  },
+  "keywords": [
+    "bun",
+    "github",
+    "actions"
+  ],
+  "author": "Anton Golub <antongolub@antongolub.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/antongolub/actions-setup-bun/issues"
+  },
+  "homepage": "https://github.com/antongolub/actions-setup-bun#readme",
+  "dependencies": {
+    "@actions/core": "^1.9.0"
+  }
+}

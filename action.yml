@@ -1,0 +1,13 @@
+name: 'Setup Bun Runtime'
+description: 'Setup Bun Runtime'
+author: 'Anton Golub'
+inputs:
+  bun-version:
+    description: 'Version Spec of the version to use. Examples: 0.0.77, 0.1.2, >=0.1'
+    required: false
+
+runs:
+  using: 'node16'
+  main: 'src/main/js/index.js'
+  # post: 'dist/cache-save/index.js'
+  # post-if: success()

@@ -1,3 +1,8 @@
+## [1.2.1](https://github.com/antongolub/action-setup-bun/compare/v1.2.0...v1.2.1) (2022-07-09)
+
+### Fixes & improvements
+* fix: http client init ([ebbd1a9](https://github.com/antongolub/action-setup-bun/commit/ebbd1a97e8aa1b3814e36662a47f67b6f426ffe3))
+
 ## [1.2.0](https://github.com/antongolub/action-setup-bun/compare/v1.1.0...v1.2.0) (2022-07-09)
 
 ### Features

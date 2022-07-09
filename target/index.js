@@ -6537,10 +6537,11 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(2186)
 const exec = __nccwpck_require__(1514)
-const http = __nccwpck_require__(6255)
+const { HttpClient } = __nccwpck_require__(6255)
 const path = __nccwpck_require__(1017)
 const semver = __nccwpck_require__(1383)
 
+const http = new HttpClient()
 const installSh = __nccwpck_require__.ab + "install.sh"
 const setup = async (range) => {
   const args = [__nccwpck_require__.ab + "install.sh"]

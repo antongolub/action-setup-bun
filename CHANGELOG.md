@@ -1,3 +1,8 @@
+## [1.0.6](https://github.com/antongolub/action-setup-bun/compare/v1.0.5...v1.0.6) (2022-07-09)
+
+### Fixes & improvements
+* fix: fix PATH injection ([aeb0f67](https://github.com/antongolub/action-setup-bun/commit/aeb0f6750af46374b0823ff6855fdad41683437d))
+
 ## [1.0.5](https://github.com/antongolub/action-setup-bun/compare/v1.0.4...v1.0.5) (2022-07-09)
 
 ### Fixes & improvements

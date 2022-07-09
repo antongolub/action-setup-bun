@@ -3286,33 +3286,6 @@ exports.debug = debug; // for test
 
 /***/ }),
 
-/***/ 573:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const exec = __nccwpck_require__(514)
-const path = __nccwpck_require__(17)
-
-const installSh = __nccwpck_require__.ab + "install.sh"
-const setup = async (version) => {
-  const args = [__nccwpck_require__.ab + "install.sh"]
-  if (version) args.push(version)
-
-  const res = await exec.getExecOutput('bash', args, { ignoreReturnCode: true})
-
-  await exec.exec('echo "/home/runner/.bun/bin:" >> $GITHUB_PATH')
-
-  // if (res.stderr) throw res.stderr
-
-  // cp.execSync('exec bash')
-}
-
-module.exports = {
-  setup
-}
-
-
-/***/ }),
-
 /***/ 491:
 /***/ ((module) => {
 
@@ -3459,13 +3432,25 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(186)
-const {setup} = __nccwpck_require__(573)
+const exec = __nccwpck_require__(514);
+const path = __nccwpck_require__(17)
+
+const installSh = __nccwpck_require__.ab + "install.sh"
+const setup = async (version) => {
+  const args = [__nccwpck_require__.ab + "install.sh"]
+  if (version) args.push(version)
+
+  const res = await exec.getExecOutput('bash', args, { ignoreReturnCode: true})
+
+  return /.+BUN_INSTALL="([^"]+)"/.match(res.stderr)[1]
+}
 
 async function main() {
   try {
     const version = core.getInput('version')
-    await setup(version)
+    const BUN_INSTALL = await setup(version)
 
+    core.addPath(path.join(BUN_INSTALL, 'bin'))
   } catch (e) {
     core.setOutput("error_message", e.message)
     core.setFailed(e.message)

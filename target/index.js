@@ -6566,7 +6566,7 @@ const resolveVersion = async (reqVersion) => {
 
 async function main() {
   try {
-    const version = core.getInput('version')
+    const version = core.getInput('version') || core.getInput('bun-version')
     const BUN_INSTALL = await setup(version)
 
     core.addPath(path.join(BUN_INSTALL, 'bin'))

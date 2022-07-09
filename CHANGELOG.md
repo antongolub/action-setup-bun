@@ -1,3 +1,8 @@
+## [1.2.0](https://github.com/antongolub/action-setup-bun/compare/v1.1.0...v1.2.0) (2022-07-09)
+
+### Features
+* feat: support both `version` and `bun-version` options ([f6df376](https://github.com/antongolub/action-setup-bun/commit/f6df37646fe56e282c25d0b3a55ee1c5347ff593))
+
 ## [1.1.0](https://github.com/antongolub/action-setup-bun/compare/v1.0.8...v1.1.0) (2022-07-09)
 
 ### Features

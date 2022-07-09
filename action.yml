@@ -5,6 +5,9 @@ inputs:
   bun-version:
     description: 'Version Spec of the version to use. Examples: 0.0.77, 0.1.2, >=0.1'
     required: false
+  version:
+    description: 'Alias for bun-version option'
+    required: false
 
 runs:
   using: 'node16'

@@ -31,8 +31,14 @@ jobs:
       - name: Install deps
         run: yarn install
 
-      - name: Run tests
-        run: yarn test
+      - name: Build
+        run: yarn build
+
+      - name: Load Bun
+        run: node target/index.js
+
+      - name: Check Bun
+        run: bun -v
 
   test_pr:
     if: ${{ needs.init.outputs.skip == 'false' && github.event_name == 'pull_request' }}
@@ -56,9 +62,14 @@ jobs:
       - name: Install deps
         run: yarn install
 
-      - name: Run tests
-        timeout-minutes: 1
-        run: yarn test
+      - name: Build
+        run: yarn build
+
+      - name: Load Bun
+        run: node target/index.js
+
+      - name: Check Bun
+        run: bun -v
 
   release:
     name: Release
@@ -83,9 +94,6 @@ jobs:
 
       - name: Build
         run: yarn build
-
-      - name: Run tests
-        run: yarn test
 
       - name: Docs
         run: yarn docs

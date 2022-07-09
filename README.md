@@ -6,7 +6,7 @@ Setup GitHub Actions workflow with a specific version of [Bun](https://github.co
 - name: Setup Bun Runtime
   uses: antongolub/action-setup-bun@v1.x.x
   with:
-    version: 0.1.2
+    version: 0.1.2 # Examples: 0.0.77, 0.1.2, >=0.1
 
 - name: Run script
   run: bun index.js

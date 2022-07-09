@@ -30,6 +30,8 @@
   "dependencies": {
     "@actions/core": "^1.9.0",
     "@actions/exec": "^1.1.1",
-    "@vercel/ncc": "^0.34.0"
+    "@actions/http-client": "^2.0.1",
+    "@vercel/ncc": "^0.34.0",
+    "semver": "^7.3.7"
   }
 }

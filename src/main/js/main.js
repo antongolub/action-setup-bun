@@ -4,7 +4,7 @@ const { HttpClient } = require('@actions/http-client')
 const path = require('path')
 const semver = require('semver')
 
-const http = new HttpClient()
+const http = new HttpClient('@actions/http-client')
 const installSh = path.resolve(__dirname, '../../main/sh/install.sh')
 const setup = async (range) => {
   const args = [installSh]

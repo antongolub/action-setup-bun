@@ -1,3 +1,11 @@
+## [1.4.0](https://github.com/antongolub/action-setup-bun/compare/v1.3.1...v1.4.0) (2022-07-09)
+
+### Fixes & improvements
+* refactor: decompose, add some tests ([f8c40d3](https://github.com/antongolub/action-setup-bun/commit/f8c40d34ada864d55254b770ad643954234ee04c))
+
+### Features
+* feat: add `repo` option ([99d7187](https://github.com/antongolub/action-setup-bun/commit/99d71877d6b3e0f627db0e442f9ea3c4261fe3e7))
+
 ## [1.3.1](https://github.com/antongolub/action-setup-bun/compare/v1.3.0...v1.3.1) (2022-07-09)
 
 ### Fixes & improvements

@@ -6390,6 +6390,40 @@ try {
 
 /***/ }),
 
+/***/ 5541:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const exec = __nccwpck_require__(1514)
+const { HttpClient } = __nccwpck_require__(6255)
+const path = __nccwpck_require__(1017)
+const semver = __nccwpck_require__(1383)
+const http = new HttpClient('@actions/http-client')
+const installSh = __nccwpck_require__.ab + "install.sh"
+
+const install = async (version, repo) => {
+  const {stdout} = await exec.getExecOutput('bash', [__nccwpck_require__.ab + "install.sh", repo, version])
+
+  return /.*BUN_INSTALL="([^"]+)"/.exec(stdout.trim())[1]
+}
+
+const pickVersion = async (range, repo) => {
+  const url = `https://api.github.com/repos/${repo}/tags`
+  const tags = (await http.getJson(url)).result
+  const version = tags.find(({name}) => semver.satisfies(name.replace('bun-', ''), range))
+
+  if (!version) throw new Error(`Version ${range} not found`)
+
+  return version.name
+}
+
+module.exports = {
+  install,
+  pickVersion
+}
+
+
+/***/ }),
+
 /***/ 9491:
 /***/ ((module) => {
 
@@ -6536,43 +6570,23 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(2186)
-const exec = __nccwpck_require__(1514)
-const { HttpClient } = __nccwpck_require__(6255)
 const path = __nccwpck_require__(1017)
-const semver = __nccwpck_require__(1383)
+const { install, pickVersion } = __nccwpck_require__(5541)
 
-const http = new HttpClient('@actions/http-client')
-const installSh = __nccwpck_require__.ab + "install.sh"
-const setup = async (range) => {
-  const args = [__nccwpck_require__.ab + "install.sh"]
-  const version = await resolveVersion(range)
-
-  if (version) args.push(version)
-
-  const {stdout} = await exec.getExecOutput('bash', args)
-
-  return /.*BUN_INSTALL="([^"]+)"/.exec(stdout.trim())[1]
-}
-
-const resolveVersion = async (reqVersion) => {
-  if (!reqVersion) return null
-
-  const tags = (await http.getJson('https://api.github.com/repos/Jarred-Sumner/bun-releases-for-updater/tags')).result
-  const version = tags.find(({name}) => semver.satisfies(name.replace('bun-', ''), reqVersion))
-
-  if (!version) throw new Error(`Version ${reqVersion} not found`)
-
-  return version.name
-}
+const defaultVersion = '*'
+const defaultRepo = 'Jarred-Sumner/bun-releases-for-updater'
 
 async function main() {
   try {
-    const version = core.getInput('version') || core.getInput('bun-version')
-    const BUN_INSTALL = await setup(version)
+    const range = core.getInput('version') || core.getInput('bun-version') || defaultVersion
+    const repo = core.getInput('repo') || defaultRepo
+    const version = await pickVersion(range, repo)
+    const BUN_INSTALL = await install(version, repo)
 
     core.addPath(path.join(BUN_INSTALL, 'bin'))
     core.setOutput('version', version)
-    core.info(`Bun version ${version} installed`)
+    core.info(`Bun version ${version} installed from ${repo}`)
+
   } catch (e) {
     core.setOutput('error_message', e.message)
     core.setFailed(e.message)

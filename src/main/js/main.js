@@ -7,8 +7,8 @@ const defaultRepo = 'Jarred-Sumner/bun-releases-for-updater'
 
 async function main() {
   try {
-    const range = core.getInput('version') || core.getInput('bun-version') || defaultVersion
-    const repo = core.getInput('repo') || defaultRepo
+    const range = core.getInput('bun-version') || core.getInput('version') || defaultVersion
+    const repo = core.getInput('bun-repo') || defaultRepo
     const version = await pickVersion(range, repo)
     const BUN_INSTALL = await install(version, repo)
 

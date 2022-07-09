@@ -8,7 +8,7 @@ inputs:
   version:
     description: 'Alias for bun-version option'
     required: false
-  repo:
+  bun-repo:
     description: 'GitHub release stream to use. Defaults to: Jarred-Sumner/bun-releases-for-updater'
     required: false
 

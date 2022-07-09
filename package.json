@@ -1,6 +1,6 @@
 {
   "name": "action-setup-bun",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Setup GitHub Actions workflow with a specific version of Bun",
   "main": "./src/main/js/index.js",
   "scripts": {

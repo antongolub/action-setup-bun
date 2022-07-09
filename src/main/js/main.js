@@ -7,7 +7,7 @@ async function main() {
     await setup(version)
 
   } catch (e) {
-    core.setOutput("error_message", error.message)
+    core.setOutput("error_message", e.message)
     core.setFailed(e.message)
   }
 }

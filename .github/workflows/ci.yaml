@@ -34,6 +34,9 @@ jobs:
       - name: Build
         run: yarn build
 
+      - name: Run tests
+        run: yarn test
+
       - name: Load Bun
         run: node target/index.js
 
@@ -43,11 +46,10 @@ jobs:
   test_pr:
     if: ${{ needs.init.outputs.skip == 'false' && github.event_name == 'pull_request' }}
     needs: init
-    name: Test PR (Node v${{ matrix.node-version }}, OS ${{ matrix.os }})
+    name: Test PR (${{ matrix.os }})
     strategy:
       matrix:
-        os: [ ubuntu-20.04 ]
-        node-version: [ 16, 18 ]
+        os: [ ubuntu-20.04, macos-latest ]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -57,13 +59,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
 
       - name: Install deps
         run: yarn install
 
       - name: Build
         run: yarn build
+
+      - name: Run tests
+        run: yarn test
 
       - name: Load Bun
         run: node target/index.js

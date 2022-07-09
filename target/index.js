@@ -6558,7 +6558,7 @@ const resolveVersion = async (reqVersion) => {
   if (!reqVersion) return null
 
   const tags = (await http.getJson('https://api.github.com/repos/Jarred-Sumner/bun/tags')).result
-  const version = tags.find(({name}) === semver.satisfies(name, reqVersion))
+  const version = tags.find(({name}) => semver.satisfies(name, reqVersion))
 
   if (!version) throw new Error(`Version ${reqVersion} not found`)
 
@@ -6571,8 +6571,10 @@ async function main() {
     const BUN_INSTALL = await setup(version)
 
     core.addPath(path.join(BUN_INSTALL, 'bin'))
+    core.setOutput('version', version)
+    core.info(`Bun version ${version} installed`)
   } catch (e) {
-    core.setOutput("error_message", e.message)
+    core.setOutput('error_message', e.message)
     core.setFailed(e.message)
   }
 }

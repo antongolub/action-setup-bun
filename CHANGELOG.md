@@ -1,3 +1,8 @@
+## [1.3.0](https://github.com/antongolub/action-setup-bun/compare/v1.2.2...v1.3.0) (2022-07-09)
+
+### Features
+* feat: log installed version ([c1e3ada](https://github.com/antongolub/action-setup-bun/commit/c1e3ada361aa672fa78e4e7d5f146a100a190f28))
+
 ## [1.2.2](https://github.com/antongolub/action-setup-bun/compare/v1.2.1...v1.2.2) (2022-07-09)
 
 ### Fixes & improvements

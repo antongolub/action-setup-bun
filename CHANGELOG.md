@@ -1,3 +1,8 @@
+## [1.2.2](https://github.com/antongolub/action-setup-bun/compare/v1.2.1...v1.2.2) (2022-07-09)
+
+### Fixes & improvements
+* fix: add useragent ([fb6324a](https://github.com/antongolub/action-setup-bun/commit/fb6324a8e58575d68faf4ca4c218025bee084115))
+
 ## [1.2.1](https://github.com/antongolub/action-setup-bun/compare/v1.2.0...v1.2.1) (2022-07-09)
 
 ### Fixes & improvements

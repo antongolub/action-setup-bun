@@ -6541,7 +6541,7 @@ const { HttpClient } = __nccwpck_require__(6255)
 const path = __nccwpck_require__(1017)
 const semver = __nccwpck_require__(1383)
 
-const http = new HttpClient()
+const http = new HttpClient('@actions/http-client')
 const installSh = __nccwpck_require__.ab + "install.sh"
 const setup = async (range) => {
   const args = [__nccwpck_require__.ab + "install.sh"]

@@ -9,7 +9,7 @@ const setup = async (version) => {
 
   const res = await exec.getExecOutput('bash', args, { ignoreReturnCode: true})
 
-  return /.+BUN_INSTALL="([^"]+)"/.match(res.stderr)[1]
+  return /.+BUN_INSTALL="([^"]+)"/.exec(res.stderr)[1]
 }
 
 async function main() {

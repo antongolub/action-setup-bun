@@ -1,3 +1,8 @@
+## [1.0.2](https://github.com/antongolub/action-setup-bun/compare/v1.0.1...v1.0.2) (2022-07-09)
+
+### Fixes & improvements
+* fix: bundled deps ([3d2632b](https://github.com/antongolub/action-setup-bun/commit/3d2632ba5284416538f6cf50d7d4690971201f84))
+
 ## [1.0.1](https://github.com/antongolub/action-setup-bun/compare/v1.0.0...v1.0.1) (2022-07-09)
 
 ### Fixes & improvements

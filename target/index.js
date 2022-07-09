@@ -6407,7 +6407,7 @@ const install = async (version, repo) => {
 }
 
 const pickVersion = async (range, repo) => {
-  const url = `https://api.github.com/repos/${repo}/tags`
+  const url = `https://api.github.com/repos/${repo}/tags?per_page=1000&page=1`
   const tags = (await http.getJson(url)).result
   const version = tags.find(({name}) => semver.satisfies(name.replace('bun-', ''), range))
 

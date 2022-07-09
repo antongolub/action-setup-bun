@@ -1,3 +1,8 @@
+## [1.4.2](https://github.com/antongolub/action-setup-bun/compare/v1.4.1...v1.4.2) (2022-07-09)
+
+### Fixes & improvements
+* fix: fetch all tags instead of default 20 ([665de9d](https://github.com/antongolub/action-setup-bun/commit/665de9d621848ac65dafadeca4d7156cca93d92f))
+
 ## [1.4.1](https://github.com/antongolub/action-setup-bun/compare/v1.4.0...v1.4.1) (2022-07-09)
 
 ### Fixes & improvements

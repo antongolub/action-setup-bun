@@ -1,13 +1,16 @@
-const cp = require('child_process')
+const exec = require('@actions/exec')
 const path = require('path')
 
 const installSh = path.resolve(__dirname, '../../main/sh/install.sh')
-const setup = (version) => {
+const setup = async (version) => {
   const args = [installSh]
   if (version) args.push(version)
 
-  const res = cp.spawnSync('bash', args, { encoding : 'utf8' })
+  const res = await exec.getExecOutput('bash', args, { ignoreReturnCode: true})
+
   if (res.stderr) throw res.stderr
+
+  // cp.execSync('exec bash')
 }
 
 module.exports = {

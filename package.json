@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/antongolub/actions-setup-bun#readme",
   "dependencies": {
-    "@actions/core": "^1.9.0"
+    "@actions/core": "^1.9.0",
+    "@actions/exec": "^1.1.1"
   }
 }

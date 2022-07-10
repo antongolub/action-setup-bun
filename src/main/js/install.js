@@ -6,7 +6,7 @@ const http = new HttpClient('@actions/http-client')
 const installSh = path.resolve(__dirname, '../../main/sh/install.sh')
 
 const install = async (version, repo) => {
-  const {stdout} = await exec.getExecOutput('bash', [installSh, repo, version])
+  const {stdout} = await exec.getExecOutput('bash', [installSh, version, repo])
 
   return /.*BUN_INSTALL="([^"]+)"/.exec(stdout.trim())[1]
 }

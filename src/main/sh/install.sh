@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Fetched from https://bun.sh/install
+# Adapted from https://bun.sh/install
 # https://github.com/Jarred-Sumner/bun
 
 # Reset
@@ -37,38 +37,18 @@ if ! command -v unzip >/dev/null; then
     exit 1
 fi
 
-if [ "$OS" = "Windows_NT" ]; then
-    echo "error: Please install Bun using Windows Subsystem for Linux."
-    exit 1
-else
-    case $(uname -sm) in
-    "Darwin x86_64") target="darwin-x64" ;;
-    "Darwin arm64") target="darwin-aarch64" ;;
-    *) target="linux-x64" ;;
-    esac
-fi
-
-if [ "$target" = "darwin-x64" ]; then
-    # Is it rosetta
-    sysctl sysctl.proc_translated >/dev/null 2>&1
-    if [ $? -eq 0 ]; then
-        target="darwin-aarch64"
-        echo -e "$Dim Your shell is running in Rosetta 2. Downloading Bun for $target instead. $Color_Off"
-    fi
-fi
-
-if [ $# -eq 2 ]; then
-    github_repo="https://github.com/${2}"
-else
-    github_repo="https://github.com/Jarred-Sumner/bun-releases-for-updater"
-fi
-
 if [ $# -eq 0 ]; then
-    bun_uri="$github_repo/releases/latest/download/bun-${target}.zip"
-else
-    bun_uri="$github_repo/releases/download/${1}/bun-${target}.zip"
+    echo -e "Target platform param is required"
+    exit 1
 fi
 
+if [ $# -eq 1 ]; then
+    echo -e "Bun_uri param is required"
+    exit 1
+fi
+
+target="${1}"
+bun_uri="${2}"
 bun_install="${BUN_INSTALL:-$HOME/.bun}"
 bin_dir="$bun_install/bin"
 exe="$bin_dir/bun"
@@ -82,7 +62,7 @@ if [ ! -d "$bin_dir" ]; then
     fi
 fi
 
-curl --fail --location --progress-bar --output "$exe.zip" "$bun_uri"
+curl --fail --location --output "$exe.zip" "$bun_uri"
 
 if (($?)); then
     echo -e "${Red}error${Color_Off}: Failed to download Bun from $bun_uri" 1>&2

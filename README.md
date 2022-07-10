@@ -9,8 +9,16 @@ Setup GitHub Actions workflow with a specific version of [Bun](https://github.co
 - name: Setup Bun Runtime
   uses: antongolub/action-setup-bun@v1 # or @v1.x.x
   with:
-    bun-version: 0.1.2
+    # Optional, default is the latest Bun version
     # Examples: 0.0.77, 0.1.2, >=0.1
+    bun-version: 0.1.2
+
+    # Optional, default is 'Jarred-Sumner/bun-releases-for-updater'
+    bun-repo: 'Jarred-Sumner/bun-releases-for-updater'
+    
+    # Optional, default is <current system>
+    # Examples: darwin-x64, darwin-aarch64, linux-x64
+    platform: 'linux-x64'
 
 - name: Run script
   run: bun index.js

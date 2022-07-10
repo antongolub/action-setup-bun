@@ -1,16 +1,20 @@
 const core = require('@actions/core')
+const tc = require('@actions/tool-cache')
 const path = require('path')
-const { install, pickVersion } = require('./install.js')
+const url = require('url')
+const { install, pickVersion, getBunUri, getPlatform } = require('./install.js')
 
 const defaultVersion = '*'
 const defaultRepo = 'Jarred-Sumner/bun-releases-for-updater'
 
 async function main() {
   try {
-    const range = core.getInput('bun-version') || core.getInput('version') || defaultVersion
-    const repo = core.getInput('bun-repo') || defaultRepo
-    const version = await pickVersion(range, repo)
-    const BUN_INSTALL = await install(version, repo)
+    const range =       core.getInput('bun-version') || core.getInput('version') || defaultVersion
+    const repo =        core.getInput('bun-repo') || defaultRepo
+    const platform =    core.getInput('platform') || await getPlatform()
+    const version =     await pickVersion(repo, range)
+    const bunPath =     await getBunPath(repo, version, platform)
+    const BUN_INSTALL = await install(platform, url.pathToFileURL(bunPath))
 
     core.addPath(path.join(BUN_INSTALL, 'bin'))
     core.setOutput('version', version)
@@ -20,6 +24,21 @@ async function main() {
     core.setOutput('error_message', e.message)
     core.setFailed(e.message)
   }
+}
+
+async function getBunPath(repo, version, platform) {
+  const cachedBunPath = tc.find('bun', version, platform)
+  if (cachedBunPath) {
+    core.info('Found bun in cache')
+    return cachedBunPath
+  }
+
+  const bunUri = getBunUri(repo, version, platform)
+  core.info(`Downloading bun from ${bunUri}`)
+  const bunPath = await tc.downloadTool(bunUri)
+
+  await tc.cacheFile(bunPath, `bun-${version}-${platform}`, 'bun', version, platform)
+  return bunPath
 }
 
 main()

@@ -4,14 +4,27 @@ const path = require('path')
 const semver = require('semver')
 const http = new HttpClient('@actions/http-client')
 const installSh = path.resolve(__dirname, '../../main/sh/install.sh')
+const getPlatformSh = path.resolve(__dirname, '../../main/sh/get-platform.sh')
 
-const install = async (version, repo) => {
-  const {stdout} = await exec.getExecOutput('bash', [installSh, version, repo])
+function getBunUri(repo, version, platform) {
+  return `https://github.com/${repo}/releases/download/${version}/bun-${platform}.zip`
+}
+
+async function getPlatform() {
+  const {stdout} = await exec.getExecOutput('bash', [getPlatformSh])
+  return stdout.trim()
+}
+
+async function install(platform, bunUri) {
+  if (!platform) throw new Error(`Target platform is required`)
+  if (!bunUri) throw new Error(`Bun URI is required`)
+
+  const {stdout} = await exec.getExecOutput('bash', [installSh, platform, bunUri])
 
   return /.*BUN_INSTALL="([^"]+)"/.exec(stdout.trim())[1]
 }
 
-const pickVersion = async (range, repo) => {
+async function pickVersion(repo, range) {
   const url = `https://api.github.com/repos/${repo}/tags?per_page=1000&page=1`
   const tags = (await http.getJson(url)).result
   const version = tags.find(({name}) => semver.satisfies(name.replace('bun-', ''), range))
@@ -23,5 +36,7 @@ const pickVersion = async (range, repo) => {
 
 module.exports = {
   install,
-  pickVersion
+  pickVersion,
+  getBunUri,
+  getPlatform
 }

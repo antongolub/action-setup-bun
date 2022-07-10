@@ -43,7 +43,7 @@ async function getBunSource(repo, version, platform) {
     core.info('Found bun in cache')
     return cachedBunPath
   } else {
-    core.info('Found bun bins', tc.findAllVersions('bun', platform))
+    core.info('Found bun bins', tc.findAllVersions('bun'))
   }
 
   const bunUri = getBunUri(repo, version, platform)
@@ -51,6 +51,11 @@ async function getBunSource(repo, version, platform) {
   const bunPath = await tc.downloadTool(bunUri)
 
   await tc.cacheFile(bunPath, `bun-${version}-${platform}`, 'bun', version, platform)
+  core.info('Found bun bins #1', tc.find('bun', version, platform))
+  core.info('Found bun bins #2', tc.find('bun', version))
+  core.info('Found bun bins #3', tc.find('bun'))
+  core.info('Found bun bins #4', tc.findAllVersions('bun'))
+
   return bunPath
 }
 

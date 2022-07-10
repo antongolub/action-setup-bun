@@ -19,14 +19,19 @@ Setup GitHub Actions workflow with a specific version of [Bun](https://github.co
     # Optional, default is <current system>
     # Examples: darwin-x64, darwin-aarch64, linux-x64
     platform: 'linux-x64'
+    
+    # Attach $BUN_INSTALL/install/cache to action/cache
+    # Optional, defaults to false
+    cache: true
 
 - name: Run script
   run: bun index.js
 ```
 
 ### Outputs
-`version` — the version of Bun that was installed.  
-`error_message` — if an error occurred, the error message.
+`bun-version` — the version of Bun that was installed.  
+`error_message` — if an error occurred, the error message.  
+`cache-hit` — if the bun cache was hit: true / false.
 
 ## License
 [MIT](LICENSE)

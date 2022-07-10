@@ -5,11 +5,14 @@ inputs:
   bun-version:
     description: 'Version Spec of the version to use. Examples: 0.0.77, 0.1.2, >=0.1'
     required: false
+  bun-repo:
+    description: 'GitHub release stream to use. Defaults to: Jarred-Sumner/bun-releases-for-updater'
+    required: false
   version:
     description: 'Alias for bun-version option'
     required: false
-  bun-repo:
-    description: 'GitHub release stream to use. Defaults to: Jarred-Sumner/bun-releases-for-updater'
+  cache:
+    description: 'Enable cross-job installed modules caching. Default is false'
     required: false
 
 runs:

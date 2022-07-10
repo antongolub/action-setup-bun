@@ -5,6 +5,7 @@ const url = require('url')
 const { install, pickVersion, getBunUri, getPlatform } = require('./install.js')
 const { restoreCache } = require('./cache.js')
 const {BUN_INSTALL_PATH, BUN_CACHE_PATH} = require("./constants");
+const {findAllVersions} = require("@actions/tool-cache");
 
 const defaultVersion = '*'
 const defaultRepo = 'Jarred-Sumner/bun-releases-for-updater'
@@ -41,6 +42,8 @@ async function getBunSource(repo, version, platform) {
   if (cachedBunPath) {
     core.info('Found bun in cache')
     return cachedBunPath
+  } else {
+    core.info('Found bun bins', tc.findAllVersions('bun', platform))
   }
 
   const bunUri = getBunUri(repo, version, platform)
@@ -52,3 +55,4 @@ async function getBunSource(repo, version, platform) {
 }
 
 main()
+

@@ -8,7 +8,7 @@ const { CACHE_KEY, CACHE_STATE } = require('./constants.js')
 async function restoreCache(cachePath, platform){
   const workspace = process.env.GITHUB_WORKSPACE
   const lfPath = path.join(workspace, 'bun.lockb')
-  const lfHash = glob.hashFiles(lfPath)
+  const lfHash = await glob.hashFiles(lfPath)
   const primaryKey = `bun-cache-${platform}-${lfHash}`
 
   core.debug(`cache key is ${primaryKey}`)

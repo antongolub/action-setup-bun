@@ -3,21 +3,31 @@ const tc = require('@actions/tool-cache')
 const path = require('path')
 const url = require('url')
 const { install, pickVersion, getBunUri, getPlatform } = require('./install.js')
+const { restoreCache } = require('./cache.js')
+const {BUN_INSTALL_PATH, BUN_CACHE_PATH} = require("./constants");
 
 const defaultVersion = '*'
 const defaultRepo = 'Jarred-Sumner/bun-releases-for-updater'
 
 async function main() {
   try {
-    const range =       core.getInput('bun-version') || core.getInput('version') || defaultVersion
-    const repo =        core.getInput('bun-repo') || defaultRepo
-    const platform =    core.getInput('platform') || await getPlatform()
-    const version =     await pickVersion(repo, range)
-    const bunPath =     await getBunPath(repo, version, platform)
-    const BUN_INSTALL = await install(platform, url.pathToFileURL(bunPath))
+    const range =           core.getInput('bun-version') || core.getInput('version') || defaultVersion
+    const repo =            core.getInput('bun-repo') || defaultRepo
+    const platform =        core.getInput('platform') || await getPlatform()
+    const cache =           core.getInput('cache')
+    const version =         await pickVersion(repo, range)
+    const bunSource =       await getBunSource(repo, version, platform)
+    const bunInstallPath =  await install(platform, url.pathToFileURL(bunSource))
+    const bunBinPath =      path.join(bunInstallPath, 'bin')
+    const bunCachePath =    path.join(bunInstallPath, 'install/cache')
 
-    core.addPath(path.join(BUN_INSTALL, 'bin'))
-    core.setOutput('version', version)
+    core.saveState(BUN_INSTALL_PATH, bunInstallPath)
+    core.saveState(BUN_CACHE_PATH, bunCachePath)
+
+    cache && await restoreCache(bunCachePath, platform)
+
+    core.addPath(bunBinPath)
+    core.setOutput('bun-version', version)
     core.info(`Bun version ${version} installed from ${repo}`)
 
   } catch (e) {
@@ -26,7 +36,7 @@ async function main() {
   }
 }
 
-async function getBunPath(repo, version, platform) {
+async function getBunSource(repo, version, platform) {
   const cachedBunPath = tc.find('bun', version, platform)
   if (cachedBunPath) {
     core.info('Found bun in cache')

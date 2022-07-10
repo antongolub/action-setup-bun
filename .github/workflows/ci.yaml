@@ -38,7 +38,7 @@ jobs:
         run: yarn test
 
       - name: Load Bun
-        run: node target/index.js
+        run: node target/main/index.js
 
       - name: Check Bun
         run: bun -v
@@ -71,7 +71,7 @@ jobs:
         run: yarn test
 
       - name: Load Bun
-        run: node target/index.js
+        run: node target/main/index.js
 
       - name: Check Bun
         run: bun -v

@@ -5,7 +5,9 @@
   "description": "Setup GitHub Actions workflow with a specific version of Bun",
   "main": "./target/index.js",
   "scripts": {
-    "build": "ncc build src/main/js/main.js -o target -C",
+    "build:main": "ncc build src/main/js/main.js -o target/main -C -m",
+    "build:post": "ncc build src/main/js/post.js -o target/post -C -m",
+    "build": "yarn build:main && yarn build:post",
     "test": "node src/test/js/install.test.js"
   },
   "files": [
@@ -27,8 +29,10 @@
   },
   "homepage": "https://github.com/antongolub/actions-setup-bun#readme",
   "dependencies": {
+    "@actions/cache": "^3.0.0",
     "@actions/core": "^1.9.0",
     "@actions/exec": "^1.1.1",
+    "@actions/glob": "^0.3.0",
     "@actions/http-client": "^2.0.1",
     "@actions/tool-cache": "^2.0.1",
     "semver": "^7.3.7"

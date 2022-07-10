@@ -6401,7 +6401,7 @@ const http = new HttpClient('@actions/http-client')
 const installSh = __nccwpck_require__.ab + "install.sh"
 
 const install = async (version, repo) => {
-  const {stdout} = await exec.getExecOutput('bash', [__nccwpck_require__.ab + "install.sh", repo, version])
+  const {stdout} = await exec.getExecOutput('bash', [__nccwpck_require__.ab + "install.sh", version, repo])
 
   return /.*BUN_INSTALL="([^"]+)"/.exec(stdout.trim())[1]
 }

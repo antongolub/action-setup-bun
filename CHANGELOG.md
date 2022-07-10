@@ -1,3 +1,8 @@
+## [1.4.4](https://github.com/antongolub/action-setup-bun/compare/v1.4.3...v1.4.4) (2022-07-10)
+
+### Fixes & improvements
+* refactor: swap install.sh params ([e145c62](https://github.com/antongolub/action-setup-bun/commit/e145c62f460f8897f2aeb7695dc863544922a40a))
+
 ## [1.4.3](https://github.com/antongolub/action-setup-bun/compare/v1.4.2...v1.4.3) (2022-07-10)
 
 ### Fixes & improvements

@@ -57,16 +57,16 @@ if [ "$target" = "darwin-x64" ]; then
     fi
 fi
 
-if [ $# -eq 0 ]; then
-    github_repo="https://github.com/Jarred-Sumner/bun-releases-for-updater"
+if [ $# -eq 2 ]; then
+    github_repo="https://github.com/${2}"
 else
-    github_repo="https://github.com/${1}"
+    github_repo="https://github.com/Jarred-Sumner/bun-releases-for-updater"
 fi
 
-if [ $# -eq 2 ]; then
-    bun_uri="$github_repo/releases/download/${2}/bun-${target}.zip"
-else
+if [ $# -eq 0 ]; then
     bun_uri="$github_repo/releases/latest/download/bun-${target}.zip"
+else
+    bun_uri="$github_repo/releases/download/${1}/bun-${target}.zip"
 fi
 
 bun_install="${BUN_INSTALL:-$HOME/.bun}"

@@ -1,11 +1,8 @@
 const core = require('@actions/core')
-const tc = require('@actions/tool-cache')
 const path = require('path')
-const url = require('url')
-const { install, pickVersion, getBunUri, getPlatform } = require('./install.js')
+const { install, pickVersion, getPlatform } = require('./install.js')
 const { restoreCache } = require('./cache.js')
-const {BUN_INSTALL_PATH, BUN_CACHE_PATH} = require("./constants");
-const {findAllVersions} = require("@actions/tool-cache");
+const {BUN_INSTALL_PATH, BUN_CACHE_PATH} = require('./constants.js')
 
 const defaultVersion = '*'
 const defaultRepo = 'Jarred-Sumner/bun-releases-for-updater'
@@ -17,8 +14,7 @@ async function main() {
     const platform =        core.getInput('platform') || await getPlatform()
     const cache =           core.getInput('cache')
     const version =         await pickVersion(repo, range)
-    const bunSource =       await getBunSource(repo, version, platform)
-    const bunInstallPath =  await install(platform, url.pathToFileURL(bunSource))
+    const bunInstallPath =  await install(repo, version, platform)
     const bunBinPath =      path.join(bunInstallPath, 'bin')
     const bunCachePath =    path.join(bunInstallPath, 'install/cache')
 
@@ -35,28 +31,6 @@ async function main() {
     core.setOutput('error_message', e.message)
     core.setFailed(e.message)
   }
-}
-
-async function getBunSource(repo, version, platform) {
-  const cachedBunPath = tc.find('bun', version, platform)
-  if (cachedBunPath) {
-    core.info('Found bun in cache')
-    return cachedBunPath
-  } else {
-    core.info('Found bun bins', tc.findAllVersions('bun'))
-  }
-
-  const bunUri = getBunUri(repo, version, platform)
-  core.info(`Downloading bun from ${bunUri}`)
-  const bunPath = await tc.downloadTool(bunUri)
-
-  await tc.cacheFile(bunPath, `bun-${version}-${platform}`, 'bun', version, platform)
-  core.info('Found bun bins #1', tc.find('bun', version, platform))
-  core.info('Found bun bins #2', tc.find('bun', version))
-  core.info('Found bun bins #3', tc.find('bun'))
-  core.info('Found bun bins #4', tc.findAllVersions('bun'))
-
-  return bunPath
 }
 
 main()

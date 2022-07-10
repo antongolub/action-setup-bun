@@ -1,26 +1,36 @@
 const {suite} = require('uvu')
 const assert = require('uvu/assert')
 const exec = require('@actions/exec')
+const tc = require('@actions/tool-cache')
 const {install, pickVersion, getBunUri, getPlatform} = require('../../main/js/install.js')
 
 const test = suite('install')
 const getExecOutput = exec.getExecOutput
 
 test('install()', async () => {
+  tc.find = (v) => v
+  tc.cacheFile = (v) => v
+  tc.downloadTool = () => 'tmp/bun.zip'
   exec.getExecOutput = () => Promise.resolve({stdout: 'BUN_INSTALL="1.0.0"', stderr: ''})
-  assert.equal(await install('darwin-x64', 'bun-uri'), '1.0.0')
+  assert.equal(await install('foo/repo', '1.0.0', 'darwin-x64'), '1.0.0')
   exec.getExecOutput = getExecOutput
 
   try {
     await install()
   } catch(e) {
-    assert.equal(e.message, 'Target platform is required')
+    assert.equal(e.message, 'Source repo is required')
   }
 
   try {
-    await install('darwin-x64')
+    await install('foo/repo')
   } catch(e) {
-    assert.equal(e.message, 'Bun URI is required')
+    assert.equal(e.message, 'Bun version is required')
+  }
+
+  try {
+    await install('foo/repo', '1.0.0')
+  } catch(e) {
+    assert.equal(e.message, 'Target platform is required')
   }
 })
 

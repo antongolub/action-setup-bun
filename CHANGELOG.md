@@ -1,3 +1,8 @@
+## [1.6.1](https://github.com/antongolub/action-setup-bun/compare/v1.6.0...v1.6.1) (2022-07-10)
+
+### Fixes & improvements
+* fix: fix cache key await ([f7eb82d](https://github.com/antongolub/action-setup-bun/commit/f7eb82d616d90be1e885ec6d1b14f73faa49fe4c))
+
 ## [1.6.0](https://github.com/antongolub/action-setup-bun/compare/v1.5.0...v1.6.0) (2022-07-10)
 
 ### Features

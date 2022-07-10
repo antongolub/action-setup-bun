@@ -1,3 +1,8 @@
+## [1.6.0](https://github.com/antongolub/action-setup-bun/compare/v1.5.0...v1.6.0) (2022-07-10)
+
+### Features
+* feat: provide modules caching ([91c680b](https://github.com/antongolub/action-setup-bun/commit/91c680bcb420d564ba56949ae4ab6e111f7ab7fa))
+
 ## [1.5.0](https://github.com/antongolub/action-setup-bun/compare/v1.4.4...v1.5.0) (2022-07-10)
 
 ### Features

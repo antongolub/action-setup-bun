@@ -1,3 +1,8 @@
+## [1.5.0](https://github.com/antongolub/action-setup-bun/compare/v1.4.4...v1.5.0) (2022-07-10)
+
+### Features
+* feat: apply tool-cache ([94b0ff0](https://github.com/antongolub/action-setup-bun/commit/94b0ff0593497d9f01b6db219b35335c69aedce6))
+
 ## [1.4.4](https://github.com/antongolub/action-setup-bun/compare/v1.4.3...v1.4.4) (2022-07-10)
 
 ### Fixes & improvements

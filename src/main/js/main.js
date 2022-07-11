@@ -23,6 +23,7 @@ async function main() {
 
     cache && await restoreCache(bunCachePath, platform)
 
+    core.exportVariable('BUN_INSTALL', bunInstallPath)
     core.addPath(bunBinPath)
     core.setOutput('bun-version', version)
     core.info(`Bun version ${version} installed from ${repo}`)

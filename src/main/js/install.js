@@ -31,7 +31,7 @@ async function install(repo, version, platform) {
 async function _install(platform, bunUri) {
   const {stdout} = await exec.getExecOutput('bash', [installSh, platform, bunUri])
 
-  return /.*BUN_INSTALL="([^"]+)"/.exec(stdout.trim())[1]
+  return (/.*BUN_INSTALL="([^"]+)"/.exec(stdout.trim()) || [])[1] || process.env['BUN_INSTALL']
 }
 
 async function pickVersion(repo, range) {

@@ -35,6 +35,10 @@
 
     # Optional, default is process.arch
     arch: 'x64'
+    
+    # Authenticated requests get a higher rate limit
+    # Optional
+    token: 'gh-token'
 
 - name: Run script
   run: bun index.js

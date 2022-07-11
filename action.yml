@@ -20,6 +20,9 @@ inputs:
   config:
     description: 'bun-config option alias'
     required: false
+  token:
+    description: 'GitHub PAT token to use'
+    required: false
 
 runs:
   using: 'node16'

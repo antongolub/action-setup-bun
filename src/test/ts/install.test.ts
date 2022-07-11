@@ -1,35 +1,38 @@
-const {suite} = require('uvu')
-const assert = require('uvu/assert')
-const exec = require('@actions/exec')
-const tc = require('@actions/tool-cache')
-const {install, pickVersion, getBunUri, getPlatform} = require('../../main/js/install.js')
+import {suite} from 'uvu'
+import * as assert from 'uvu/assert'
+import exec from '@actions/exec'
+import tc from '@actions/tool-cache'
+import {install, pickVersion, getBunUri, getPlatform} from '../../main/ts/install.js'
 
 const test = suite('install')
 const getExecOutput = exec.getExecOutput
 
 test('install()', async () => {
-  tc.find = (v) => v
-  tc.cacheFile = (v) => v
-  tc.downloadTool = () => 'tmp/bun.zip'
-  exec.getExecOutput = () => Promise.resolve({stdout: 'BUN_INSTALL="1.0.0"', stderr: ''})
+  tc.find = (v: string) => v
+  tc.cacheFile = (v: string) => Promise.resolve(v)
+  tc.downloadTool = () => Promise.resolve('tmp/bun.zip')
+  exec.getExecOutput = () => Promise.resolve({stdout: 'BUN_INSTALL="1.0.0"', stderr: '', exitCode: 0})
   assert.equal(await install('foo/repo', '1.0.0', 'darwin-x64'), '1.0.0')
   exec.getExecOutput = getExecOutput
 
   try {
+    // @ts-ignore
     await install()
-  } catch(e) {
+  } catch(e: any) {
     assert.equal(e.message, 'Source repo is required')
   }
 
   try {
+    // @ts-ignore
     await install('foo/repo')
-  } catch(e) {
+  } catch (e: any) {
     assert.equal(e.message, 'Bun version is required')
   }
 
   try {
+    // @ts-ignore
     await install('foo/repo', '1.0.0')
-  } catch(e) {
+  } catch (e: any) {
     assert.equal(e.message, 'Target platform is required')
   }
 })
@@ -40,7 +43,7 @@ test('pickVersion()', async () => {
 
   try {
     await pickVersion('Jarred-Sumner/bun-releases-for-updater', '10')
-  } catch(e) {
+  } catch (e: any) {
     assert.equal(e.message, 'Version 10 not found in Jarred-Sumner/bun-releases-for-updater')
   }
 })

@@ -1,17 +1,14 @@
-const core = require('@actions/core')
-const path = require('path')
-const { install, pickVersion, getPlatform } = require('./install.js')
-const { restoreCache } = require('./cache.js')
-const {INSTALL_PATH, CACHE_PATH} = require('./constants.js')
-const { getConfig } = require('./config.js')
-
-const defaultVersion = '*'
-const defaultRepo = 'Jarred-Sumner/bun-releases-for-updater'
+import core from '@actions/core'
+import path from 'path'
+import { install, pickVersion, getPlatform } from './install.js'
+import { restoreCache } from './cache.js'
+import { keys, DEFAULT_REPO, DEFAULT_VERSION } from './constants.js'
+import { getConfig } from './config.js'
 
 async function main() {
   try {
-    const range =           core.getInput('bun-version') || core.getInput('version') || defaultVersion
-    const repo =            core.getInput('bun-repo') || defaultRepo
+    const range =           core.getInput('bun-version') || core.getInput('version') || DEFAULT_VERSION
+    const repo =            core.getInput('bun-repo') || DEFAULT_REPO
     const platform =        core.getInput('platform') || await getPlatform()
     const cache =           core.getInput('cache')
     const config =          getConfig(core.getInput('bun-config') || core.getInput('config'))
@@ -20,8 +17,8 @@ async function main() {
     const bunBinPath =      path.join(bunInstallPath, 'bin')
     const bunCachePath =    path.resolve(config?.install?.cache?.dir || path.join(bunInstallPath, 'install/cache'))
 
-    core.saveState(INSTALL_PATH, bunInstallPath)
-    core.saveState(CACHE_PATH, bunCachePath)
+    core.saveState(keys.INSTALL_PATH, bunInstallPath)
+    core.saveState(keys.CACHE_PATH, bunCachePath)
 
     cache && await restoreCache(bunCachePath, platform)
 
@@ -30,7 +27,7 @@ async function main() {
     core.setOutput('bun-version', version)
     core.info(`Bun version ${version} installed from ${repo}`)
 
-  } catch (e) {
+  } catch (e: any) {
     core.setOutput('error_message', e.message)
     core.setFailed(e.message)
   }

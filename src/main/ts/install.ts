@@ -1,8 +1,9 @@
 import path from 'path'
 import semver from 'semver'
-import url, { fileURLToPath } from 'url'
+import fs from 'fs/promises'
+import { fileURLToPath } from 'url'
 import * as core from '@actions/core'
-import * as exec from '@actions/exec'
+import * as glob from '@actions/glob'
 import * as tc from '@actions/tool-cache'
 import { HttpClient } from '@actions/http-client'
 
@@ -46,12 +47,17 @@ export async function install(
 export async function _install(platform: string, distPath: string) {
   const HOME = process.env['HOME']
   const BUN_INSTALL = `${HOME}/.bun`
-  const BUN_INSTALL_BIN = `${BUN_INSTALL}/bin`
+  const temp = await tc.extractZip(distPath)
+  const binDir = `${BUN_INSTALL}/bin`
+  const bun = (await (await glob.create(`${temp}/**/bun`)).glob())[0]
 
-  await tc.extractZip(distPath, BUN_INSTALL)
+  if (bun) {
+    await fs.mkdir(binDir, { recursive: true })
+    await fs.rename(bun, `${binDir}/bun`)
+  }
 
   core.exportVariable('BUN_INSTALL', BUN_INSTALL)
-  core.addPath(BUN_INSTALL_BIN)
+  core.addPath(binDir)
 
   return BUN_INSTALL
 }
@@ -87,8 +93,8 @@ export async function getBunDist(
   core.info(`Downloading bun from ${bunUri}`)
   const bunDist = await tc.downloadTool(bunUri)
 
-  await tc.cacheFile(bunDist, file, 'bun', _version, platform)
-  core.info(`bun dist cached as ${tc.find('bun', _version, platform)}`)
+  await tc.cacheFile(bunDist, file, 'bun', _version, arch)
+  core.info(`bun dist cached as ${tc.find('bun', _version, arch)}`)
 
   return bunDist
 }

@@ -26,7 +26,7 @@ async function main() {
     cache && (await restoreCache(bunCachePath, platform, arch))
 
     core.setOutput('bun-version', version)
-    core.info(`Bun version ${version} installed from ${repo}`)
+    core.info(`Bun ${version}-${platform}-${arch} is installed from ${repo}`)
   } catch (e: any) {
     core.setOutput('error', e.message)
     core.setFailed(e.message)

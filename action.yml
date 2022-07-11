@@ -22,7 +22,16 @@ inputs:
     required: false
   token:
     description: 'GitHub PAT token to use'
+    default: ${{ github.token }}
     required: false
+
+outputs:
+  cache-hit:
+    description: 'A boolean value to indicate if a module cache was hit'
+  bun-version:
+    description: 'The installed bun version'
+  error:
+    description: 'The error message if any'
 
 runs:
   using: 'node16'

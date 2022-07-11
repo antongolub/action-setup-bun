@@ -37,7 +37,7 @@
     arch: 'x64'
     
     # Authenticated requests get a higher rate limit
-    # Optional
+    # Optional. Defaults to ${{ github.token }}
     token: 'gh-token'
 
 - name: Run script

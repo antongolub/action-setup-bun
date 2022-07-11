@@ -21,7 +21,7 @@ function writeConfig(config) {
   const workspace = process.env.GITHUB_WORKSPACE
   const configPath = path.join(workspace, CONFIG_NAME)
 
-  fs.writeFileSync(TOML.stringify(JSON.parse(config)), configPath)
+  fs.writeFileSync(configPath, TOML.stringify(JSON.parse(config)))
 }
 
 function getConfig(config) {

@@ -11,7 +11,7 @@ function readConfig() {
   try {
     return TOML.parse(fs.readFileSync(configPath, 'utf8'))
   } catch (e) {
-    core.debug('Lockfile not found')
+    core.info(`bunfig.toml not found: ${configPath}`)
     return null
   }
 }
@@ -21,6 +21,7 @@ function writeConfig(config) {
   const workspace = process.env.GITHUB_WORKSPACE
   const configPath = path.join(workspace, CONFIG_NAME)
 
+  core.info(`bunfig.toml saved: ${configPath}`)
   fs.writeFileSync(configPath, TOML.stringify(JSON.parse(config)))
 }
 

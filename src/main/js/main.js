@@ -14,7 +14,7 @@ async function main() {
     const repo =            core.getInput('bun-repo') || defaultRepo
     const platform =        core.getInput('platform') || await getPlatform()
     const cache =           core.getInput('cache')
-    const config =          getConfig(core.getInput('config'))
+    const config =          getConfig(core.getInput('bun-config') || core.getInput('config'))
     const version =         await pickVersion(repo, range)
     const bunInstallPath =  await install(repo, version, platform)
     const bunBinPath =      path.join(bunInstallPath, 'bin')

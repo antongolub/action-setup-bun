@@ -17,6 +17,9 @@ inputs:
   bun-config:
     description: 'Override bunfig.toml file. JSON string as input'
     required: false
+  config:
+    description: 'bun-config option alias'
+    required: false
 
 runs:
   using: 'node16'

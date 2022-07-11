@@ -33,13 +33,14 @@ export async function install(
   repo: string,
   version: string,
   platform: string,
-  arch: string
+  arch: string,
+  token?: string
 ) {
   if (!repo) throw new Error('Source repo is required')
   if (!version) throw new Error('Bun version is required')
   if (!platform) throw new Error('Target platform is required')
 
-  const bunDist = await getBunDist(repo, version, platform, arch)
+  const bunDist = await getBunDist(repo, version, platform, arch, token)
 
   return _install(platform, bunDist)
 }
@@ -79,7 +80,8 @@ export async function getBunDist(
   repo: string,
   version: string,
   platform: string,
-  arch: string
+  arch: string,
+  token?: string
 ): Promise<string> {
   const _version = version.replace('bun-', '')
   const file = `bun-${version}-${platform}-${arch}.zip`
@@ -88,10 +90,10 @@ export async function getBunDist(
     core.info(`bun ${_version} ${platform} ${arch} found in cache`)
     return path.join(cachedBunPath, file)
   }
-
+  const auth = token ? `token ${token}` : undefined
   const bunUri = getBunUri(repo, version, platform, arch)
   core.info(`Downloading bun from ${bunUri}`)
-  const bunDist = await tc.downloadTool(bunUri)
+  const bunDist = await tc.downloadTool(bunUri, undefined, auth)
 
   await tc.cacheFile(bunDist, file, 'bun', _version, arch)
   core.info(`bun dist cached as ${tc.find('bun', _version, arch)}`)
@@ -107,3 +109,4 @@ export function getBunUri(
 ) {
   return `https://github.com/${repo}/releases/download/${version}/bun-${platform}-${arch}.zip`
 }
+

@@ -3,11 +3,11 @@ const core = require('@actions/core')
 const glob = require('@actions/glob')
 const path = require('path')
 const fs = require('fs')
-const { CACHE_KEY, CACHE_STATE } = require('./constants.js')
+const { CACHE_KEY, CACHE_STATE, LOCKFILE_NAME } = require('./constants.js')
 
 async function restoreCache(cachePath, platform){
   const workspace = process.env.GITHUB_WORKSPACE
-  const lfPath = path.join(workspace, 'bun.lockb')
+  const lfPath = path.join(workspace, LOCKFILE_NAME)
   const lfHash = await glob.hashFiles(lfPath)
   const primaryKey = `bun-cache-${platform}-${lfHash}`
 

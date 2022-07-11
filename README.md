@@ -15,6 +15,10 @@ Setup GitHub Actions workflow with a specific version of [Bun](https://github.co
 
     # Optional, default is 'Jarred-Sumner/bun-releases-for-updater'
     bun-repo: 'Jarred-Sumner/bun-releases-for-updater'
+
+    # Override bunfig.toml inners
+    # Optional. JSON-formatted string as input
+    bun-config: '{"install: {"production": false}}'
     
     # Optional, default is <current system>
     # Examples: darwin-x64, darwin-aarch64, linux-x64

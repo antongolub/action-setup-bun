@@ -14,6 +14,9 @@ inputs:
   cache:
     description: 'Enable cross-job installed modules caching. Default is false'
     required: false
+  bun-config:
+    description: 'Override bunfig.toml file. JSON string as input'
+    required: false
 
 runs:
   using: 'node16'

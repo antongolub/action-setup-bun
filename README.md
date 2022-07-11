@@ -1,7 +1,10 @@
 # action-setup-bun
-Setup GitHub Actions workflow with a specific version of [Bun](https://github.com/Jarred-Sumner/bun) and add `$BUN_INSTALL/bin` to the `$PATH`.
+
+> Setup GitHub Actions workflow with a specific version of [Bun](https://github.com/Jarred-Sumner/bun) and add `$BUN_INSTALL/bin` to the `$PATH`.
 
 [![CI](https://github.com/antongolub/action-setup-bun/actions/workflows/ci.yaml/badge.svg)](https://github.com/antongolub/action-setup-bun/actions/workflows/ci.yaml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/51f63421b9c234ac6f27/maintainability)](https://codeclimate.com/github/antongolub/action-setup-bun/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/51f63421b9c234ac6f27/test_coverage)](https://codeclimate.com/github/antongolub/action-setup-bun/test_coverage)
 
 ## Requirements
 * macOS x64 & Silicon, Linux x64, Windows Subsystem for Linux

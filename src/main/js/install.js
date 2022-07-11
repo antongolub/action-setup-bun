@@ -46,17 +46,18 @@ async function pickVersion(repo, range) {
 
 async function getBunSource(repo, version, platform) {
   const _version = version.replace('bun-', '')
+  const file = `bun-${version}-${platform}.zip`
   const cachedBunPath = tc.find('bun', _version, platform)
   if (cachedBunPath) {
-    core.info(`bun ${_version} ${platform} found in cache'`)
-    return cachedBunPath
+    core.info(`bun ${_version} ${platform} found in cache`)
+    return path.join(cachedBunPath, file)
   }
 
   const bunUri = getBunUri(repo, version, platform)
   core.info(`Downloading bun from ${bunUri}`)
   const bunPath = await tc.downloadTool(bunUri)
 
-  await tc.cacheFile(bunPath, `bun-${version}-${platform}`, 'bun', _version, platform)
+  await tc.cacheFile(bunPath, file, 'bun', _version, platform)
   core.info(`bun bin cached as ${tc.find('bun', _version, platform)}`)
 
   return bunPath

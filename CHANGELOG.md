@@ -1,3 +1,8 @@
+## [1.7.1](https://github.com/antongolub/action-setup-bun/compare/v1.7.0...v1.7.1) (2022-07-11)
+
+### Fixes & improvements
+* fix: fix configPath on save ([61f0f2a](https://github.com/antongolub/action-setup-bun/commit/61f0f2ab7a1a6695d72179d76fc31a89334a0c16))
+
 ## [1.7.0](https://github.com/antongolub/action-setup-bun/compare/v1.6.4...v1.7.0) (2022-07-11)
 
 ### Features

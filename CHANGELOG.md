@@ -1,3 +1,8 @@
+## [1.10.0](https://github.com/antongolub/action-setup-bun/compare/v1.9.1...v1.10.0) (2022-07-11)
+
+### Features
+* feat: use `${{github.token}}` as `token` default ([be406f2](https://github.com/antongolub/action-setup-bun/commit/be406f26a605b6619a126df1deafc42e3fbbfeb7))
+
 ## [1.9.1](https://github.com/antongolub/action-setup-bun/compare/v1.9.0...v1.9.1) (2022-07-11)
 
 ### Fixes & improvements

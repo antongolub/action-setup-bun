@@ -1,3 +1,8 @@
+## [1.6.4](https://github.com/antongolub/action-setup-bun/compare/v1.6.3...v1.6.4) (2022-07-11)
+
+### Fixes & improvements
+* fix: set env.BUN_INSTALL ([6d53a44](https://github.com/antongolub/action-setup-bun/commit/6d53a44fa669476aa83a67e2797d6606d1eda222))
+
 ## [1.6.3](https://github.com/antongolub/action-setup-bun/compare/v1.6.2...v1.6.3) (2022-07-11)
 
 ### Fixes & improvements

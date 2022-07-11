@@ -1,9 +1,9 @@
-export const keys = {
-  CACHE_PRIMARY_KEY:  'CACHE_PRIMARY_KEY',
-  CACHE_STATE:        'CACHE_STATE',
-  CACHE_PATH:         'CACHE_PATH',
-  INSTALL_PATH:       'INSTALL_PATH',
-  BIN_PATH:           'BIN_PATH',
+export enum keys {
+  CACHE_PRIMARY_KEY = 'CACHE_PRIMARY_KEY',
+  CACHE_STATE = 'CACHE_STATE',
+  CACHE_PATH = 'CACHE_PATH',
+  INSTALL_PATH = 'INSTALL_PATH',
+  BIN_PATH = 'BIN_PATH',
 }
 
 export const CONFIG_NAME = 'bunfig.toml'

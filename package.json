@@ -7,8 +7,9 @@
   "scripts": {
     "build:main": "ncc build src/main/ts/main.ts -o target/main -C -m",
     "build:post": "ncc build src/main/ts/post.ts -o target/post -C -m",
-    "build": "yarn build:main && yarn build:post",
-    "test": "loadr -- uvu src/test"
+    "build": "yarn fmt && yarn build:main && yarn build:post",
+    "test": "loadr -- uvu src/test",
+    "fmt": "prettier src --write --no-semi --single-quote"
   },
   "files": [
     "target"
@@ -42,6 +43,7 @@
     "@types/semver": "^7.3.10",
     "@vercel/ncc": "^0.34.0",
     "loadr": "^0.1.1",
+    "prettier": "^2.7.1",
     "tempy": "^3.0.0",
     "tsm": "^2.2.1",
     "typescript": "^4.7.4",

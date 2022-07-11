@@ -109,4 +109,3 @@ export function getBunUri(
 ) {
   return `https://github.com/${repo}/releases/download/${version}/bun-${platform}-${arch}.zip`
 }
-

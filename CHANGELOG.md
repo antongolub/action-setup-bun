@@ -1,3 +1,12 @@
+## [1.9.0](https://github.com/antongolub/action-setup-bun/compare/v1.8.1...v1.9.0) (2022-07-11)
+
+### Features
+* feat: intriduce gh `token` option ([b7cc5a0](https://github.com/antongolub/action-setup-bun/commit/b7cc5a00fe4fb796c262c4c03cca34b332389570))
+
+### Fixes & improvements
+* fix: fix archive unfolding ([2b125df](https://github.com/antongolub/action-setup-bun/commit/2b125df84cb23069aaccac85a4d706bb87239408))
+* refactor: remove legacy sh scripts ([59d2be9](https://github.com/antongolub/action-setup-bun/commit/59d2be98d709651cbfe6cab11db50e79ddd5caad))
+
 ## [1.8.1](https://github.com/antongolub/action-setup-bun/compare/v1.8.0...v1.8.1) (2022-07-11)
 
 ### Fixes & improvements

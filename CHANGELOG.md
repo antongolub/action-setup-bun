@@ -1,3 +1,8 @@
+## [1.6.3](https://github.com/antongolub/action-setup-bun/compare/v1.6.2...v1.6.3) (2022-07-11)
+
+### Fixes & improvements
+* fix: fix zip extract from cache ([9d93b1d](https://github.com/antongolub/action-setup-bun/commit/9d93b1de2f45507b2a310808b218bd7ea4534bfc))
+
 ## [1.6.2](https://github.com/antongolub/action-setup-bun/compare/v1.6.1...v1.6.2) (2022-07-11)
 
 ### Fixes & improvements

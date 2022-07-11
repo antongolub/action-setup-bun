@@ -25,13 +25,16 @@
     # Optional. JSON-formatted string as input
     bun-config: '{"install: {"production": false}}'
     
-    # Optional, default is <current system>
-    # Examples: darwin-x64, darwin-aarch64, linux-x64
-    platform: 'linux-x64'
-    
     # Attach $BUN_INSTALL/install/cache to action/cache
     # Optional, defaults to false
     cache: true
+
+    # Optional, default is process.platform
+    # Examples: darwin, linux
+    platform: 'linux'
+
+    # Optional, default is process.arch
+    arch: 'x64'
 
 - name: Run script
   run: bun index.js

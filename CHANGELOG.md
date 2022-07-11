@@ -1,3 +1,8 @@
+## [1.7.0](https://github.com/antongolub/action-setup-bun/compare/v1.6.4...v1.7.0) (2022-07-11)
+
+### Features
+* feat: provide `bun-config` option to override `bunfig.toml` contents ([f88d787](https://github.com/antongolub/action-setup-bun/commit/f88d7876d6de14f83ea8c668de444a69026d8c8d))
+
 ## [1.6.4](https://github.com/antongolub/action-setup-bun/compare/v1.6.3...v1.6.4) (2022-07-11)
 
 ### Fixes & improvements

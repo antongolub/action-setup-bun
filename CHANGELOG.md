@@ -1,3 +1,8 @@
+## [1.9.1](https://github.com/antongolub/action-setup-bun/compare/v1.9.0...v1.9.1) (2022-07-11)
+
+### Fixes & improvements
+* docs: formatting ([fa20b06](https://github.com/antongolub/action-setup-bun/commit/fa20b06cb66b6ae7731099b55158ea70895d4304))
+
 ## [1.9.0](https://github.com/antongolub/action-setup-bun/compare/v1.8.1...v1.9.0) (2022-07-11)
 
 ### Features

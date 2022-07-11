@@ -22,7 +22,7 @@ export async function restoreCache(
   core.setOutput('cache-hit', Boolean(cacheKey))
 
   if (!cacheKey) {
-    core.info(`bun cache is not found`)
+    core.info('bun cache is not found')
     return
   }
 
@@ -39,7 +39,7 @@ export async function saveCache(cachePath: string) {
   }
 
   if (primaryKey === state) {
-    core.info(`cache state has not been changed ${primaryKey}, save skipped.`)
+    core.info(`cache state has not been changed, save skipped: ${primaryKey}`)
     return
   }
 

@@ -3,12 +3,12 @@ import { saveCache } from './cache.js'
 import { keys } from './constants.js'
 
 async function post() {
+  if (!core.getInput('cache')) return
+
   try {
-    if (core.getInput('cache')) {
-      await saveCache(core.getState(keys.CACHE_PATH))
-    }
+    await saveCache(core.getState(keys.CACHE_PATH))
   } catch (e: any) {
-    core.setOutput('error_message', e.message)
+    core.setOutput('error', e.message)
     core.setFailed(e.message)
   }
 }

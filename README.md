@@ -1,6 +1,6 @@
 # action-setup-bun
 
-> Setup GitHub Actions workflow with a specific version of [Bun](https://github.com/Jarred-Sumner/bun) and add `$BUN_INSTALL/bin` to the `$PATH`.
+> Setup GitHub Actions workflow with a specific version of [Bun](https://github.com/oven-sh/bun) and add `$BUN_INSTALL/bin` to the `$PATH`.
 
 [![CI](https://github.com/antongolub/action-setup-bun/actions/workflows/ci.yaml/badge.svg)](https://github.com/antongolub/action-setup-bun/actions/workflows/ci.yaml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/51f63421b9c234ac6f27/maintainability)](https://codeclimate.com/github/antongolub/action-setup-bun/maintainability)
@@ -45,9 +45,11 @@
 ```
 
 ### Outputs
-`bun-version` — the version of Bun that was installed.  
-`error_message` — if an error occurred, the error message.  
-`cache-hit` — if the bun cache was hit: true / false.
+| Name          | Description                              |
+|---------------|------------------------------------------|
+| `bun-version` | The version of Bun that was installed    |
+| `cache-hit`   | if the bun cache was hit: `true / false` |
+| `error`       | if an error occurred, the error message  |
 
 ## License
 [MIT](LICENSE)

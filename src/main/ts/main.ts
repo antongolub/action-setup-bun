@@ -28,7 +28,7 @@ async function main() {
     core.setOutput('bun-version', version)
     core.info(`Bun version ${version} installed from ${repo}`)
   } catch (e: any) {
-    core.setOutput('error_message', e.message)
+    core.setOutput('error', e.message)
     core.setFailed(e.message)
   }
 }

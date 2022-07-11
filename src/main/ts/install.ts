@@ -84,10 +84,10 @@ export async function getBunDist(
   token?: string
 ): Promise<string> {
   const _version = version.replace('bun-', '')
-  const file = `bun-${version}-${platform}-${arch}.zip`
+  const file = `bun-${_version}-${platform}-${arch}.zip`
   const cachedBunPath = tc.find('bun', _version, arch)
   if (cachedBunPath) {
-    core.info(`bun ${_version} ${platform} ${arch} found in cache`)
+    core.info(`bun ${_version} ${platform} ${arch} found in tool-cache`)
     return path.join(cachedBunPath, file)
   }
   const auth = token ? `token ${token}` : undefined
@@ -96,7 +96,7 @@ export async function getBunDist(
   const bunDist = await tc.downloadTool(bunUri, undefined, auth)
 
   await tc.cacheFile(bunDist, file, 'bun', _version, arch)
-  core.info(`bun dist cached as ${tc.find('bun', _version, arch)}`)
+  core.info(`bun dist tool-cached as ${tc.find('bun', _version, arch)}`)
 
   return bunDist
 }

@@ -3,17 +3,19 @@ import * as assert from 'uvu/assert'
 import exec from '@actions/exec'
 import tc from '@actions/tool-cache'
 import {install, pickVersion, getBunUri, getPlatform} from '../../main/ts/install.js'
+import {DEFAULT_REPO} from '../../main/ts/constants'
+import {temporaryDirectory} from 'tempy'
 
 const test = suite('install')
 const getExecOutput = exec.getExecOutput
+const temp = temporaryDirectory()
 
 test('install()', async () => {
-  tc.find = (v: string) => v
-  tc.cacheFile = (v: string) => Promise.resolve(v)
-  tc.downloadTool = () => Promise.resolve('tmp/bun.zip')
+  process.env.RUNNER_TOOL_CACHE = temp
+  process.env.RUNNER_TEMP = temp
+
   exec.getExecOutput = () => Promise.resolve({stdout: 'BUN_INSTALL="1.0.0"', stderr: '', exitCode: 0})
-  assert.equal(await install('foo/repo', '1.0.0', 'darwin-x64'), '1.0.0')
-  exec.getExecOutput = getExecOutput
+  assert.equal(await install(DEFAULT_REPO, 'bun-v0.1.1', 'darwin-x64', true), '')
 
   try {
     // @ts-ignore

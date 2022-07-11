@@ -20,13 +20,14 @@ export async function getPlatform() {
   return stdout.trim()
 }
 
-export async function install(repo: string, version: string, platform: string) {
+export async function install(repo: string, version: string, platform: string, dryrun: boolean = false) {
   if (!repo) throw new Error('Source repo is required')
   if (!version) throw new Error('Bun version is required')
   if (!platform) throw new Error('Target platform is required')
 
   const bunSource = await getBunSource(repo, version, platform)
 
+  if (dryrun) { return '' }
   return _install(platform, url.pathToFileURL(bunSource).toString())
 }
 

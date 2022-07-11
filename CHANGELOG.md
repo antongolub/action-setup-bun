@@ -1,3 +1,9 @@
+## [1.6.2](https://github.com/antongolub/action-setup-bun/compare/v1.6.1...v1.6.2) (2022-07-11)
+
+### Fixes & improvements
+* fix: fix bin cache key ([1681fc4](https://github.com/antongolub/action-setup-bun/commit/1681fc4711042a3fe9c00d1cc6467f279b690c72))
+* perf: debug ([d1c0063](https://github.com/antongolub/action-setup-bun/commit/d1c0063db7486cdb728920905b58633ba592c597))
+
 ## [1.6.1](https://github.com/antongolub/action-setup-bun/compare/v1.6.0...v1.6.1) (2022-07-10)
 
 ### Fixes & improvements

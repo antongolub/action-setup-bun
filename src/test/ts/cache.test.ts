@@ -1,7 +1,7 @@
 import { suite } from 'uvu'
 import * as assert from 'uvu/assert'
 import { temporaryDirectory } from 'tempy'
-import {restoreCache, saveCache} from '../../main/ts/cache.js'
+import { restoreCache, saveCache } from '../../main/ts/cache.js'
 import { keys } from '../../main/ts/constants.js'
 
 const test = suite('post')
@@ -16,8 +16,7 @@ test('saveCache()', async () => {
   try {
     process.env[`STATE_${keys.CACHE_STATE}`] = 'bar'
     await saveCache(temp)
-  } catch (e) {
-  }
+  } catch (e) {}
 
   try {
     // @ts-ignore
@@ -28,7 +27,7 @@ test('saveCache()', async () => {
 })
 
 test('restoreCache()', async () => {
-  await restoreCache(temp, 'linux-x64')
+  await restoreCache(temp, 'linux', 'x64')
 })
 
 test.run()

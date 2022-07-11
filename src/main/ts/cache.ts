@@ -5,11 +5,15 @@ import path from 'path'
 import fs from 'fs'
 import { keys, LOCKFILE_NAME } from './constants.js'
 
-export async function restoreCache(cachePath: string, platform: string) {
+export async function restoreCache(
+  cachePath: string,
+  platform: string,
+  arch: string
+) {
   const cwd = process.env.GITHUB_WORKSPACE || process.cwd()
   const lfPath = path.join(cwd, LOCKFILE_NAME)
   const lfHash = await glob.hashFiles(lfPath)
-  const primaryKey = `bun-cache-${platform}-${lfHash}`
+  const primaryKey = `bun-cache-${platform}-${arch}-${lfHash}`
 
   core.debug(`cache key is ${primaryKey}`)
   core.saveState(keys.CACHE_PRIMARY_KEY, primaryKey)

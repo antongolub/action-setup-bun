@@ -9,46 +9,51 @@ import { HttpClient } from '@actions/http-client'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const http = new HttpClient('@actions/http-client')
 const installSh = path.resolve(__dirname, '../../main/sh/install.sh')
-const getPlatformSh = path.resolve(__dirname, '../../main/sh/get-platform.sh')
 
-export function getBunUri(repo: string, version: string, platform: string) {
-  return `https://github.com/${repo}/releases/download/${version}/bun-${platform}.zip`
+export function getArch() {
+  const { arch } = process
+  if (!['arm64', 'x64'].includes(arch)) {
+    throw new Error(`Unsupported arch: ${arch}`)
+  }
+
+  return arch
 }
 
-export async function getPlatform() {
-  const { stdout } = await exec.getExecOutput('bash', [getPlatformSh])
-  return stdout.trim()
+export function getPlatform() {
+  const { platform } = process
+  if (!['linux', 'darwin'].includes(platform)) {
+    throw new Error(`Unsupported platform: ${platform}`)
+  }
+
+  return platform
 }
 
 export async function install(
   repo: string,
   version: string,
   platform: string,
-  dryrun: boolean = false
+  arch: string
 ) {
   if (!repo) throw new Error('Source repo is required')
   if (!version) throw new Error('Bun version is required')
   if (!platform) throw new Error('Target platform is required')
 
-  const bunSource = await getBunSource(repo, version, platform)
+  const bunDist = await getBunDist(repo, version, platform, arch)
 
-  if (dryrun) {
-    return ''
-  }
-  return _install(platform, url.pathToFileURL(bunSource).toString())
+  return _install(platform, bunDist)
 }
 
-export async function _install(platform: string, bunUri: string) {
-  const { stdout } = await exec.getExecOutput('bash', [
-    installSh,
-    platform,
-    bunUri,
-  ])
+export async function _install(platform: string, distPath: string) {
+  const HOME = process.env['HOME']
+  const BUN_INSTALL = `${HOME}/.bun`
+  const BUN_INSTALL_BIN = `${BUN_INSTALL}/bin`
 
-  return (
-    (/.*BUN_INSTALL="([^"]+)"/.exec(stdout.trim()) || [])[1] ||
-    process.env['BUN_INSTALL'] + ''
-  )
+  await tc.extractZip(distPath, BUN_INSTALL)
+
+  core.exportVariable('BUN_INSTALL', BUN_INSTALL)
+  core.addPath(BUN_INSTALL_BIN)
+
+  return BUN_INSTALL
 }
 
 export async function pickVersion(repo: string, range: string) {
@@ -64,25 +69,35 @@ export async function pickVersion(repo: string, range: string) {
   return version.name
 }
 
-export async function getBunSource(
+export async function getBunDist(
   repo: string,
   version: string,
-  platform: string
-) {
+  platform: string,
+  arch: string
+): Promise<string> {
   const _version = version.replace('bun-', '')
-  const file = `bun-${version}-${platform}.zip`
-  const cachedBunPath = tc.find('bun', _version, platform)
+  const file = `bun-${version}-${platform}-${arch}.zip`
+  const cachedBunPath = tc.find('bun', _version, arch)
   if (cachedBunPath) {
-    core.info(`bun ${_version} ${platform} found in cache`)
+    core.info(`bun ${_version} ${platform} ${arch} found in cache`)
     return path.join(cachedBunPath, file)
   }
 
-  const bunUri = getBunUri(repo, version, platform)
+  const bunUri = getBunUri(repo, version, platform, arch)
   core.info(`Downloading bun from ${bunUri}`)
-  const bunPath = await tc.downloadTool(bunUri)
+  const bunDist = await tc.downloadTool(bunUri)
 
-  await tc.cacheFile(bunPath, file, 'bun', _version, platform)
-  core.info(`bun bin cached as ${tc.find('bun', _version, platform)}`)
+  await tc.cacheFile(bunDist, file, 'bun', _version, platform)
+  core.info(`bun dist cached as ${tc.find('bun', _version, platform)}`)
 
-  return bunPath
+  return bunDist
+}
+
+export function getBunUri(
+  repo: string,
+  version: string,
+  platform: string,
+  arch: string
+) {
+  return `https://github.com/${repo}/releases/download/${version}/bun-${platform}-${arch}.zip`
 }

@@ -8,7 +8,7 @@
     "build:main": "ncc build src/main/ts/main.ts -o target/main -C -m",
     "build:post": "ncc build src/main/ts/post.ts -o target/post -C -m",
     "build": "yarn fmt && yarn build:main && yarn build:post",
-    "test": "BUN_INSTALL_DRY_RUN=true loadr -- uvu src/test",
+    "test": "loadr -- uvu src/test",
     "test:cov": "c8 yarn test && c8 report -r lcov",
     "fmt": "prettier src --write --no-semi --single-quote"
   },

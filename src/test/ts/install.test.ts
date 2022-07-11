@@ -1,11 +1,11 @@
 import { suite } from 'uvu'
 import * as assert from 'uvu/assert'
-import exec from '@actions/exec'
 import {
   install,
   pickVersion,
   getBunUri,
   getPlatform,
+  getArch,
 } from '../../main/ts/install.js'
 import { DEFAULT_REPO } from '../../main/ts/constants'
 import { temporaryDirectory } from 'tempy'
@@ -18,7 +18,7 @@ test('install()', async () => {
   process.env.RUNNER_TEMP = temp
 
   assert.match(
-    await install(DEFAULT_REPO, 'bun-v0.1.1', 'darwin-x64', ),
+    await install(DEFAULT_REPO, 'bun-v0.1.1', 'darwin', 'x64'),
     /\.bun/
   )
 
@@ -69,14 +69,19 @@ test('getBunUri()', async () => {
     getBunUri(
       'Jarred-Sumner/bun-releases-for-updater',
       'bun-v0.1.2',
-      'darwin-x64'
+      'darwin',
+      'x64'
     ),
     'https://github.com/Jarred-Sumner/bun-releases-for-updater/releases/download/bun-v0.1.2/bun-darwin-x64.zip'
   )
 })
 
 test('getPlatform()', async () => {
-  assert.match(await getPlatform(), /^.+64$/)
+  assert.equal(await getPlatform(), process.platform)
+})
+
+test('getArch()', async () => {
+  assert.equal(await getArch(), process.arch)
 })
 
 test.run()

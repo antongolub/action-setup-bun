@@ -1,3 +1,8 @@
+## [1.8.0](https://github.com/antongolub/action-setup-bun/compare/v1.7.1...v1.8.0) (2022-07-11)
+
+### Features
+* feat: add `config` opt alias for `bun-config` ([94241b2](https://github.com/antongolub/action-setup-bun/commit/94241b218ebafebe52757b38ff0d293315090561))
+
 ## [1.7.1](https://github.com/antongolub/action-setup-bun/compare/v1.7.0...v1.7.1) (2022-07-11)
 
 ### Fixes & improvements

@@ -1,9 +1,9 @@
 import path from 'path'
 import semver from 'semver'
 import url, {fileURLToPath} from 'url'
-import core from '@actions/core'
-import exec from '@actions/exec'
-import tc from '@actions/tool-cache'
+import * as core from '@actions/core'
+import * as exec from '@actions/exec'
+import * as tc from '@actions/tool-cache'
 import { HttpClient }  from '@actions/http-client'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))

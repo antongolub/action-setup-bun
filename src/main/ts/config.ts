@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import TOML from '@iarna/toml'
-import core from '@actions/core'
+import * as core from '@actions/core'
 import { CONFIG_NAME } from './constants.js'
 
 const cwd = process.env.GITHUB_WORKSPACE || process.cwd()

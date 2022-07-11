@@ -1,4 +1,4 @@
-import core from '@actions/core'
+import * as core from '@actions/core'
 import path from 'path'
 import { install, pickVersion, getPlatform } from './install.js'
 import { restoreCache } from './cache.js'

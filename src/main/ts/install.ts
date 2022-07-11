@@ -1,42 +1,46 @@
-const exec =          require('@actions/exec')
-const { HttpClient } = require('@actions/http-client')
-const path =          require('path')
-const semver =        require('semver')
-const url =           require('url')
-const tc =            require('@actions/tool-cache')
-const core =          require('@actions/core')
-const http =          new HttpClient('@actions/http-client')
+import path from 'path'
+import semver from 'semver'
+import url, {fileURLToPath} from 'url'
+import * as core from '@actions/core'
+import * as exec from '@actions/exec'
+import * as tc from '@actions/tool-cache'
+import { HttpClient }  from '@actions/http-client'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const http = new HttpClient('@actions/http-client')
 const installSh =     path.resolve(__dirname, '../../main/sh/install.sh')
 const getPlatformSh = path.resolve(__dirname, '../../main/sh/get-platform.sh')
 
-function getBunUri(repo, version, platform) {
+export function getBunUri(repo: string, version: string, platform: string) {
   return `https://github.com/${repo}/releases/download/${version}/bun-${platform}.zip`
 }
 
-async function getPlatform() {
+export async function getPlatform() {
   const {stdout} = await exec.getExecOutput('bash', [getPlatformSh])
   return stdout.trim()
 }
 
-async function install(repo, version, platform) {
+export async function install(repo: string, version: string, platform: string, dryrun: boolean = false) {
   if (!repo) throw new Error('Source repo is required')
   if (!version) throw new Error('Bun version is required')
   if (!platform) throw new Error('Target platform is required')
 
   const bunSource = await getBunSource(repo, version, platform)
 
-  return _install(platform, url.pathToFileURL(bunSource))
+  if (dryrun) { return '' }
+  return _install(platform, url.pathToFileURL(bunSource).toString())
 }
 
-async function _install(platform, bunUri) {
+export async function _install(platform: string, bunUri: string) {
   const {stdout} = await exec.getExecOutput('bash', [installSh, platform, bunUri])
 
-  return (/.*BUN_INSTALL="([^"]+)"/.exec(stdout.trim()) || [])[1] || process.env['BUN_INSTALL']
+  return (/.*BUN_INSTALL="([^"]+)"/.exec(stdout.trim()) || [])[1] || process.env['BUN_INSTALL'] + ''
 }
 
-async function pickVersion(repo, range) {
+export async function pickVersion(repo: string, range: string) {
+  type Tag = {name: string}
   const url = `https://api.github.com/repos/${repo}/tags?per_page=1000&page=1`
-  const tags = (await http.getJson(url)).result
+  const tags = (await http.getJson(url)).result as Tag[]
   const version = tags.find(({name}) => semver.satisfies(name.replace('bun-', ''), range))
 
   if (!version) throw new Error(`Version ${range} not found in ${repo}`)
@@ -44,7 +48,7 @@ async function pickVersion(repo, range) {
   return version.name
 }
 
-async function getBunSource(repo, version, platform) {
+export async function getBunSource(repo: string, version: string, platform: string) {
   const _version = version.replace('bun-', '')
   const file = `bun-${version}-${platform}.zip`
   const cachedBunPath = tc.find('bun', _version, platform)
@@ -61,11 +65,4 @@ async function getBunSource(repo, version, platform) {
   core.info(`bun bin cached as ${tc.find('bun', _version, platform)}`)
 
   return bunPath
-}
-
-module.exports = {
-  install,
-  pickVersion,
-  getBunUri,
-  getPlatform,
 }

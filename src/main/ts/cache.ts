@@ -1,18 +1,18 @@
-const cache = require('@actions/cache')
-const core = require('@actions/core')
-const glob = require('@actions/glob')
-const path = require('path')
-const fs = require('fs')
-const { CACHE_KEY, CACHE_STATE, LOCKFILE_NAME } = require('./constants.js')
+import * as cache from '@actions/cache'
+import * as core from '@actions/core'
+import * as glob from '@actions/glob'
+import path from 'path'
+import fs from 'fs'
+import { keys, LOCKFILE_NAME } from './constants.js'
 
-async function restoreCache(cachePath, platform){
-  const workspace = process.env.GITHUB_WORKSPACE
-  const lfPath = path.join(workspace, LOCKFILE_NAME)
+export async function restoreCache(cachePath: string, platform: string){
+  const cwd = process.env.GITHUB_WORKSPACE || process.cwd()
+  const lfPath = path.join(cwd, LOCKFILE_NAME)
   const lfHash = await glob.hashFiles(lfPath)
   const primaryKey = `bun-cache-${platform}-${lfHash}`
 
   core.debug(`cache key is ${primaryKey}`)
-  core.saveState(CACHE_KEY, primaryKey)
+  core.saveState(keys.CACHE_PRIMARY_KEY, primaryKey)
 
   const cacheKey = await cache.restoreCache([cachePath], primaryKey)
   core.setOutput('cache-hit', Boolean(cacheKey))
@@ -22,13 +22,13 @@ async function restoreCache(cachePath, platform){
     return
   }
 
-  core.saveState(CACHE_STATE, cacheKey)
+  core.saveState(keys.CACHE_STATE, cacheKey)
   core.info(`bun cache restored: ${cacheKey}`)
 }
 
-async function saveCache(cachePath){
-  const primaryKey = core.getState(CACHE_KEY)
-  const state = core.getState(CACHE_STATE)
+export async function saveCache(cachePath: string){
+  const primaryKey = core.getState(keys.CACHE_PRIMARY_KEY)
+  const state = core.getState(keys.CACHE_STATE)
 
   if (!fs.existsSync(cachePath)) {
     throw new Error(`bun cache dir not found: ${cachePath}`)
@@ -46,9 +46,3 @@ async function saveCache(cachePath){
 
   core.info(`bun cache saved: ${primaryKey}`)
 }
-
-module.exports = {
-  restoreCache,
-  saveCache
-}
-

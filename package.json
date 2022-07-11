@@ -5,10 +5,10 @@
   "description": "Setup GitHub Actions workflow with a specific version of Bun",
   "main": "./target/index.js",
   "scripts": {
-    "build:main": "ncc build src/main/js/main.js -o target/main -C -m",
-    "build:post": "ncc build src/main/js/post.js -o target/post -C -m",
+    "build:main": "ncc build src/main/ts/main.ts -o target/main -C -m",
+    "build:post": "ncc build src/main/ts/post.ts -o target/post -C -m",
     "build": "yarn build:main && yarn build:post",
-    "test": "node src/test/js/install.test.js"
+    "test": "loadr -- uvu src/test"
   },
   "files": [
     "target"
@@ -39,7 +39,12 @@
     "semver": "^7.3.7"
   },
   "devDependencies": {
+    "@types/semver": "^7.3.10",
     "@vercel/ncc": "^0.34.0",
+    "loadr": "^0.1.1",
+    "tempy": "^3.0.0",
+    "tsm": "^2.2.1",
+    "typescript": "^4.7.4",
     "uvu": "^0.5.6"
   }
 }

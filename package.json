@@ -8,7 +8,8 @@
     "build:main": "ncc build src/main/ts/main.ts -o target/main -C -m",
     "build:post": "ncc build src/main/ts/post.ts -o target/post -C -m",
     "build": "yarn fmt && yarn build:main && yarn build:post",
-    "test": "loadr -- uvu src/test",
+    "test": "BUN_INSTALL_DRY_RUN=true loadr -- uvu src/test",
+    "test:cov": "c8 yarn test && c8 report -r lcov",
     "fmt": "prettier src --write --no-semi --single-quote"
   },
   "files": [
@@ -42,6 +43,7 @@
   "devDependencies": {
     "@types/semver": "^7.3.10",
     "@vercel/ncc": "^0.34.0",
+    "c8": "^7.11.3",
     "loadr": "^0.1.1",
     "prettier": "^2.7.1",
     "tempy": "^3.0.0",

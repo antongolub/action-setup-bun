@@ -13,4 +13,4 @@ async function post() {
   }
 }
 
-post()
+await post()

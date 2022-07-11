@@ -121,3 +121,7 @@ cc-reporter.*
 *.key
 *.pem
 *.cert
+
+# Temp assets
+bunfig.toml
+

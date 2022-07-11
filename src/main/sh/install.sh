@@ -53,6 +53,12 @@ bun_install="${BUN_INSTALL:-$HOME/.bun}"
 bin_dir="$bun_install/bin"
 exe="$bin_dir/bun"
 
+if [ "$BUN_INSTALL_DRY_RUN" = "true" ]; then
+  echo -e "  $BWhiteexport BUN_INSTALL=\"$bun_install\"$Color_Off"
+  exit 0
+fi
+
+
 if [ ! -d "$bin_dir" ]; then
     mkdir -p "$bin_dir"
 

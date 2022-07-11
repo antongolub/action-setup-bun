@@ -1,6 +1,8 @@
 # action-setup-bun
 Setup GitHub Actions workflow with a specific version of [Bun](https://github.com/Jarred-Sumner/bun) and add `$BUN_INSTALL/bin` to the `$PATH`.
 
+[![CI](https://github.com/antongolub/action-setup-bun/actions/workflows/ci.yaml/badge.svg)](https://github.com/antongolub/action-setup-bun/actions/workflows/ci.yaml)
+
 ## Requirements
 * macOS x64 & Silicon, Linux x64, Windows Subsystem for Linux
 

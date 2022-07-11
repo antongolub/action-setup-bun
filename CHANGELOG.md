@@ -1,3 +1,8 @@
+## [1.8.1](https://github.com/antongolub/action-setup-bun/compare/v1.8.0...v1.8.1) (2022-07-11)
+
+### Fixes & improvements
+* refactor: migrate to typescript (#7) ([a6c1e86](https://github.com/antongolub/action-setup-bun/commit/a6c1e864f9e8430fb93050987dd7ee7dbb44eedc))
+
 ## [1.8.0](https://github.com/antongolub/action-setup-bun/compare/v1.7.1...v1.8.0) (2022-07-11)
 
 ### Features

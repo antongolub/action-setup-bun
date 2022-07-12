@@ -3,7 +3,7 @@ import * as assert from 'uvu/assert'
 import {
   install,
   pickVersion,
-  getBunUri,
+  getBunDistUri,
   getPlatform,
   getArch,
 } from '../../main/ts/install.js'
@@ -43,9 +43,9 @@ test('pickVersion()', async () => {
   }
 })
 
-test('getBunUri()', async () => {
+test('getBunDistUri()', async () => {
   assert.equal(
-    getBunUri(
+    getBunDistUri(
       'Jarred-Sumner/bun-releases-for-updater',
       'bun-v0.1.2',
       'darwin',

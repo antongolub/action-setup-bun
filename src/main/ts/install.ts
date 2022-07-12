@@ -1,13 +1,11 @@
 import path from 'path'
 import semver from 'semver'
 import fs from 'fs/promises'
-import { fileURLToPath } from 'url'
 import * as core from '@actions/core'
 import * as glob from '@actions/glob'
 import * as tc from '@actions/tool-cache'
 import { HttpClient } from '@actions/http-client'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const http = new HttpClient('@actions/http-client')
 
 export function getArch() {
@@ -78,19 +76,19 @@ export async function getBunDist(
     core.info(`bun ${_version} ${platform} ${arch} found in tool-cache`)
     return path.join(cachedBunPath, file)
   }
-  const auth = token ? `token ${token}` : undefined
-  const bunUri = getBunUri(repo, version, platform, arch)
 
-  core.info(`Downloading bun from ${bunUri}`)
-  const bunDist = await tc.downloadTool(bunUri, undefined, auth)
+  const auth = token ? `token ${token}` : undefined
+  const bunDistUri = getBunDistUri(repo, version, platform, arch)
+  core.info(`Downloading bun from ${bunDistUri}`)
+  const bunDist = await tc.downloadTool(bunDistUri, undefined, auth)
 
   await tc.cacheFile(bunDist, file, 'bun', _version, arch)
-  core.info(`bun dist tool-cached as ${tc.find('bun', _version, arch)}`)
+  core.info(`bun dist tool-cached: ${tc.find('bun', _version, arch)}`)
 
   return bunDist
 }
 
-export function getBunUri(
+export function getBunDistUri(
   repo: string,
   version: string,
   platform: string,

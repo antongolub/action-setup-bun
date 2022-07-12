@@ -14,7 +14,7 @@
 - name: Setup Bun Runtime
   uses: antongolub/action-setup-bun@v1 # or @v1.x.x
   with:
-    # Optional, default is the latest Bun version
+    # Optional, if empty the latest bun version will be used
     # Examples: 0.0.77, 0.1.2, >=0.1
     bun-version: 0.1.2
 
@@ -23,6 +23,7 @@
 
     # Override bunfig.toml inners
     # Optional. JSON-formatted string as input
+    # See: https://github.com/oven-sh/bun#bunfigtoml
     bun-config: '{"install: {"production": false}}'
     
     # Attach $BUN_INSTALL/install/cache to action/cache

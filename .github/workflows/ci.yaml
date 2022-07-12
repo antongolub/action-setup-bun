@@ -88,7 +88,6 @@ jobs:
 
   release:
     name: Release
-    # https://github.community/t/trigger-job-on-tag-push-only/18076
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     needs: test_push
     runs-on: ubuntu-20.04

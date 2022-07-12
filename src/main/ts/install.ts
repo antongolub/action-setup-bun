@@ -9,22 +9,19 @@ import { HttpClient } from '@actions/http-client'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const http = new HttpClient('@actions/http-client')
-const installSh = path.resolve(__dirname, '../../main/sh/install.sh')
 
 export function getArch() {
   const { arch } = process
-  if (!['arm64', 'x64'].includes(arch)) {
+  if (!['arm64', 'x64'].includes(arch))
     throw new Error(`Unsupported arch: ${arch}`)
-  }
 
   return arch
 }
 
 export function getPlatform() {
   const { platform } = process
-  if (!['linux', 'darwin'].includes(platform)) {
+  if (!['linux', 'darwin'].includes(platform))
     throw new Error(`Unsupported platform: ${platform}`)
-  }
 
   return platform
 }
@@ -36,19 +33,10 @@ export async function install(
   arch: string,
   token?: string
 ) {
-  if (!repo) throw new Error('Source repo is required')
-  if (!version) throw new Error('Bun version is required')
-  if (!platform) throw new Error('Target platform is required')
-
   const bunDist = await getBunDist(repo, version, platform, arch, token)
-
-  return _install(platform, bunDist)
-}
-
-export async function _install(platform: string, distPath: string) {
   const HOME = process.env['HOME']
   const BUN_INSTALL = `${HOME}/.bun`
-  const temp = await tc.extractZip(distPath)
+  const temp = await tc.extractZip(bunDist)
   const binDir = `${BUN_INSTALL}/bin`
   const bun = (await (await glob.create(`${temp}/**/bun`)).glob())[0]
 
@@ -92,6 +80,7 @@ export async function getBunDist(
   }
   const auth = token ? `token ${token}` : undefined
   const bunUri = getBunUri(repo, version, platform, arch)
+
   core.info(`Downloading bun from ${bunUri}`)
   const bunDist = await tc.downloadTool(bunUri, undefined, auth)
 

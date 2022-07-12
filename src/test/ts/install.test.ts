@@ -21,27 +21,6 @@ test('install()', async () => {
     await install(DEFAULT_REPO, 'bun-v0.1.1', 'darwin', 'x64'),
     /\.bun/
   )
-
-  try {
-    // @ts-ignore
-    await install()
-  } catch (e: any) {
-    assert.equal(e.message, 'Source repo is required')
-  }
-
-  try {
-    // @ts-ignore
-    await install('foo/repo')
-  } catch (e: any) {
-    assert.equal(e.message, 'Bun version is required')
-  }
-
-  try {
-    // @ts-ignore
-    await install('foo/repo', '1.0.0')
-  } catch (e: any) {
-    assert.equal(e.message, 'Target platform is required')
-  }
 })
 
 test('pickVersion()', async () => {

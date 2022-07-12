@@ -11,8 +11,8 @@ async function main() {
   try {
     const range =     getInput('bun-version') || getInput('version') || DEFAULT_VERSION
     const repo =      getInput('bun-repo') || DEFAULT_REPO
-    const platform =  getInput('platform') || getPlatform()
-    const arch =      getInput('arch') || getArch()
+    const platform =  getPlatform(getInput('platform'))
+    const arch =      getArch(getInput('arch'))
     const cache =     getInput('cache')
     const cacheBin =  getInput('cache-bin')
     const token =     getInput('token')

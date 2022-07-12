@@ -9,16 +9,14 @@ import { HttpClient } from '@actions/http-client'
 
 const http = new HttpClient('@actions/http-client')
 
-export function getArch() {
-  const { arch } = process
+export function getArch(arch: string = process.arch) {
   if (!['arm64', 'x64'].includes(arch))
     throw new Error(`Unsupported arch: ${arch}`)
 
   return arch
 }
 
-export function getPlatform() {
-  const { platform } = process
+export function getPlatform(platform: string = process.platform) {
   if (!['linux', 'darwin'].includes(platform))
     throw new Error(`Unsupported platform: ${platform}`)
 

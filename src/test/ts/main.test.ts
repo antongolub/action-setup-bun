@@ -10,6 +10,7 @@ test('main()', async () => {
   process.env['INPUT_BUN-VERSION'] = '0.1.2'
   process.env['INPUT_BUN-CONFIG'] = '{"install": {"production": true}}'
   process.env.INPUT_CACHE = 'true'
+  process.env['INPUT_CACHE-BIN'] = 'true'
 
   await import('../../main/ts/main.js')
 })

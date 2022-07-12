@@ -22,12 +22,12 @@ export async function restoreCache(
   core.setOutput('cache-hit', Boolean(cacheKey))
 
   if (!cacheKey) {
-    core.info('bun cache is not found')
+    core.info('bun modules cache is not found')
     return
   }
 
   core.saveState(keys.CACHE_STATE, cacheKey)
-  core.info(`bun cache restored: ${cacheKey}`)
+  core.info(`bun modules cache restored: ${cacheKey}`)
 }
 
 export async function saveCache(cachePath: string) {
@@ -35,11 +35,13 @@ export async function saveCache(cachePath: string) {
   const state = core.getState(keys.CACHE_STATE)
 
   if (!fs.existsSync(cachePath)) {
-    throw new Error(`bun cache dir not found: ${cachePath}`)
+    throw new Error(`bun modules cache dir not found: ${cachePath}`)
   }
 
   if (primaryKey === state) {
-    core.info(`cache state has not been changed, save skipped: ${primaryKey}`)
+    core.info(
+      `bun modules cache state has not been changed, save skipped: ${primaryKey}`
+    )
     return
   }
 

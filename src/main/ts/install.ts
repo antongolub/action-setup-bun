@@ -52,7 +52,10 @@ export async function install(
     }
   }
 
-  withCache && (await cache.saveCache([bunBinDir], binId))
+  if (withCache && restored !== binId) {
+    await cache.saveCache([bunBinDir], binId)
+    core.info(`${binId} added to action cache`)
+  }
 
   core.exportVariable('BUN_INSTALL', BUN_INSTALL)
   core.addPath(bunBinDir)

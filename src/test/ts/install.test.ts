@@ -41,6 +41,12 @@ test('pickVersion()', async () => {
       'Version 10 not found in Jarred-Sumner/bun-releases-for-updater'
     )
   }
+
+  try {
+    await pickVersion('Jarred-Sumner/bun-releases-for-updater', '-10.a.2')
+  } catch (e: any) {
+    assert.equal(e.message, 'Invalid version range: -10.a.2')
+  }
 })
 
 test('getBunDistUri()', async () => {

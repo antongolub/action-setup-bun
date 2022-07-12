@@ -4,7 +4,7 @@ import { temporaryDirectory } from 'tempy'
 import { restoreCache, saveCache } from '../../main/ts/cache.js'
 import { keys } from '../../main/ts/constants.js'
 
-const test = suite('post')
+const test = suite('cache')
 const temp = temporaryDirectory()
 
 test('saveCache()', async () => {

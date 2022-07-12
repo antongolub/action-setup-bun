@@ -66,10 +66,14 @@ export async function pickVersion(repo: string, range: string) {
   const url = `https://api.github.com/repos/${repo}/tags?per_page=1000&page=1`
   const tags = (await http.getJson(url)).result as Tag[]
   const _range = range === 'latest' ? '*' : range
+
+  if (semver.validRange(_range) === null) {
+    throw new Error(`Invalid version range: ${_range}`)
+  }
+
   const version = tags.find(({ name }) =>
     semver.satisfies(name.replace('bun-', ''), _range)
   )
-
   if (!version) throw new Error(`Version ${range} not found in ${repo}`)
 
   return version.name

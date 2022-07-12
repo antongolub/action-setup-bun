@@ -34,15 +34,15 @@ export async function saveCache(cachePath: string) {
   const primaryKey = core.getState(keys.CACHE_PRIMARY_KEY)
   const state = core.getState(keys.CACHE_STATE)
 
-  if (!fs.existsSync(cachePath)) {
-    throw new Error(`bun modules cache dir not found: ${cachePath}`)
-  }
-
   if (primaryKey === state) {
     core.info(
       `bun modules cache state has not been changed, save skipped: ${primaryKey}`
     )
     return
+  }
+
+  if (!fs.existsSync(cachePath)) {
+    throw new Error(`bun modules cache dir not found: ${cachePath}`)
   }
 
   const cacheId = await cache.saveCache([cachePath], primaryKey)

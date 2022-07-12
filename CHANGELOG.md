@@ -1,3 +1,8 @@
+## [1.11.2](https://github.com/antongolub/action-setup-bun/compare/v1.11.1...v1.11.2) (2022-07-12)
+
+### Fixes & improvements
+* fix: parse input 'false' as undefined ([7b11397](https://github.com/antongolub/action-setup-bun/commit/7b11397416810990a448118ba1f3514e67197b66))
+
 ## [1.11.1](https://github.com/antongolub/action-setup-bun/compare/v1.11.0...v1.11.1) (2022-07-12)
 
 ### Fixes & improvements

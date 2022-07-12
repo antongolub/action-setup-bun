@@ -1,3 +1,8 @@
+## [1.11.0](https://github.com/antongolub/action-setup-bun/compare/v1.10.1...v1.11.0) (2022-07-12)
+
+### Features
+* feat: add `cache-bin` option to enable cross-job installed bun binaries caching ([62bf36c](https://github.com/antongolub/action-setup-bun/commit/62bf36c556f7e2738beb2276a340fa8f104e8a0f))
+
 ## [1.10.1](https://github.com/antongolub/action-setup-bun/compare/v1.10.0...v1.10.1) (2022-07-12)
 
 ### Fixes & improvements

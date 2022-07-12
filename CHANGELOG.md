@@ -1,3 +1,10 @@
+## [1.12.0](https://github.com/antongolub/action-setup-bun/compare/v1.11.2...v1.12.0) (2022-07-12)
+
+### Features
+* feat: check input version range validity ([900dfcc](https://github.com/antongolub/action-setup-bun/commit/900dfccd8f3e3778e1fe7033cd3a3039f17ca208))
+* feat: check `platform` and `arch` user inputs ([b666962](https://github.com/antongolub/action-setup-bun/commit/b666962b064e3c9e76ce5e931145b39f3c3a106f))
+* feat: handle `latest` as `*` bun version alias ([98cafbd](https://github.com/antongolub/action-setup-bun/commit/98cafbde6d2f1df35c4835b9070cd06ec9bbdc5c))
+
 ## [1.11.2](https://github.com/antongolub/action-setup-bun/compare/v1.11.1...v1.11.2) (2022-07-12)
 
 ### Fixes & improvements

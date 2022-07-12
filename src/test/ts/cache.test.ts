@@ -22,7 +22,7 @@ test('saveCache()', async () => {
     // @ts-ignore
     await saveCache()
   } catch (e: any) {
-    assert.ok(e.message.includes('bun cache dir not found'))
+    assert.ok(e.message.includes('bun modules cache dir not found'))
   }
 })
 

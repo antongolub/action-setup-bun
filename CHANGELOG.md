@@ -1,3 +1,8 @@
+## [1.11.1](https://github.com/antongolub/action-setup-bun/compare/v1.11.0...v1.11.1) (2022-07-12)
+
+### Fixes & improvements
+* fix: avoid bin cache reupload ([8704639](https://github.com/antongolub/action-setup-bun/commit/8704639ff061dbe0a8cefde2ca67247a3dda4a0c))
+
 ## [1.11.0](https://github.com/antongolub/action-setup-bun/compare/v1.10.1...v1.11.0) (2022-07-12)
 
 ### Features

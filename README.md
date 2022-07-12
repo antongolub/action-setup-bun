@@ -30,6 +30,11 @@
     # Optional, defaults to false
     cache: true
 
+    # actions/tool-cache provides a cache for the current job only
+    # Use actions/cache to store the bun binary for the whole workflow
+    # Optional, defaults to false
+    cache-bin: true
+
     # Optional, default is process.platform
     # Examples: darwin, linux
     platform: 'linux'

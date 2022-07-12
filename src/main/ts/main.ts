@@ -13,11 +13,12 @@ async function main() {
     const platform =  core.getInput('platform') || getPlatform()
     const arch =      core.getInput('arch') || getArch()
     const cache =     core.getInput('cache')
+    const cacheBin =  core.getInput('cache-bin')
     const token =     core.getInput('token')
     const config =    getConfig(core.getInput('bun-config') || core.getInput('config'))
 
     const version =         await pickVersion(repo, range)
-    const bunInstallPath =  await install(repo, version, platform, arch, token)
+    const bunInstallPath =  await install(repo, version, platform, arch, token, cacheBin)
     const bunCachePath =    path.resolve(config?.install?.cache?.dir || path.join(bunInstallPath, 'install/cache'))
 
     core.saveState(keys.INSTALL_PATH, bunInstallPath)

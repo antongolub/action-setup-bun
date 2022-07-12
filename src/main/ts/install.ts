@@ -4,6 +4,7 @@ import fs from 'fs/promises'
 import * as core from '@actions/core'
 import * as glob from '@actions/glob'
 import * as tc from '@actions/tool-cache'
+import * as cache from '@actions/cache'
 import { HttpClient } from '@actions/http-client'
 
 const http = new HttpClient('@actions/http-client')
@@ -29,22 +30,32 @@ export async function install(
   version: string,
   platform: string,
   arch: string,
-  token?: string
+  token?: string,
+  withCache?: string
 ) {
-  const bunDist = await getBunDist(repo, version, platform, arch, token)
   const HOME = process.env['HOME']
   const BUN_INSTALL = `${HOME}/.bun`
-  const temp = await tc.extractZip(bunDist)
-  const binDir = `${BUN_INSTALL}/bin`
-  const bun = (await (await glob.create(`${temp}/**/bun`)).glob())[0]
+  const bunBinDir = `${BUN_INSTALL}/bin`
+  const binId = `bun-${version}-${platform}-${arch}`
+  const restored = withCache && (await cache.restoreCache([bunBinDir], binId))
 
-  if (bun) {
-    await fs.mkdir(binDir, { recursive: true })
-    await fs.rename(bun, `${binDir}/bun`)
+  if (restored) {
+    core.info(`${binId} restored from action cache`)
+  } else {
+    const bunDist = await getBunDist(repo, version, platform, arch, token)
+    const temp = await tc.extractZip(bunDist)
+    const bun = (await (await glob.create(`${temp}/**/bun`)).glob())[0]
+
+    if (bun) {
+      await fs.mkdir(bunBinDir, { recursive: true })
+      await fs.rename(bun, `${bunBinDir}/bun`)
+    }
   }
 
+  withCache && (await cache.saveCache([bunBinDir], binId))
+
   core.exportVariable('BUN_INSTALL', BUN_INSTALL)
-  core.addPath(binDir)
+  core.addPath(bunBinDir)
 
   return BUN_INSTALL
 }

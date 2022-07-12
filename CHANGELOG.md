@@ -1,3 +1,8 @@
+## [1.12.1](https://github.com/antongolub/action-setup-bun/compare/v1.12.0...v1.12.1) (2022-07-12)
+
+### Fixes & improvements
+* fix: check modules cache match before cache dir presence ([edb89b1](https://github.com/antongolub/action-setup-bun/commit/edb89b1071e79a4afc0e2368b0787af0a81d3a80))
+
 ## [1.12.0](https://github.com/antongolub/action-setup-bun/compare/v1.11.2...v1.12.0) (2022-07-12)
 
 ### Features

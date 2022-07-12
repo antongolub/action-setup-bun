@@ -1,3 +1,8 @@
+## [1.10.1](https://github.com/antongolub/action-setup-bun/compare/v1.10.0...v1.10.1) (2022-07-12)
+
+### Fixes & improvements
+* docs: add bunfig spec ref ([790f6eb](https://github.com/antongolub/action-setup-bun/commit/790f6eb1bff1547e227c51443a14fd157f5e9927))
+
 ## [1.10.0](https://github.com/antongolub/action-setup-bun/compare/v1.9.1...v1.10.0) (2022-07-11)
 
 ### Features

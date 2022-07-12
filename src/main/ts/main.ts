@@ -4,18 +4,19 @@ import { install, pickVersion, getPlatform, getArch } from './install.js'
 import { restoreCache } from './cache.js'
 import { keys, DEFAULT_REPO, DEFAULT_VERSION } from './constants.js'
 import { getConfig } from './config.js'
+import { getInput } from './util.js'
 
 async function main() {
   // prettier-ignore
   try {
-    const range =     core.getInput('bun-version') || core.getInput('version') || DEFAULT_VERSION
-    const repo =      core.getInput('bun-repo') || DEFAULT_REPO
-    const platform =  core.getInput('platform') || getPlatform()
-    const arch =      core.getInput('arch') || getArch()
-    const cache =     core.getInput('cache')
-    const cacheBin =  core.getInput('cache-bin')
-    const token =     core.getInput('token')
-    const config =    getConfig(core.getInput('bun-config') || core.getInput('config'))
+    const range =     getInput('bun-version') || getInput('version') || DEFAULT_VERSION
+    const repo =      getInput('bun-repo') || DEFAULT_REPO
+    const platform =  getInput('platform') || getPlatform()
+    const arch =      getInput('arch') || getArch()
+    const cache =     getInput('cache')
+    const cacheBin =  getInput('cache-bin')
+    const token =     getInput('token')
+    const config =    getConfig(getInput('bun-config') || getInput('config'))
 
     const version =         await pickVersion(repo, range)
     const bunInstallPath =  await install(repo, version, platform, arch, token, cacheBin)

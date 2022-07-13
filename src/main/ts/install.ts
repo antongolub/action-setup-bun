@@ -10,7 +10,7 @@ import { HttpClient } from '@actions/http-client'
 const http = new HttpClient('@actions/http-client')
 
 export function getArch(arch: string = process.arch) {
-  if (!['arm64', 'x64'].includes(arch))
+  if (!['arm64', 'x64', 'x86_64', 'aarch64'].includes(arch))
     throw new Error(`Unsupported arch: ${arch}`)
 
   return arch
@@ -111,5 +111,10 @@ export function getBunDistUri(
   platform: string,
   arch: string
 ) {
-  return `https://github.com/${repo}/releases/download/${version}/bun-${platform}-${arch}.zip`
+  // prettier-ignore
+  const _arch =
+      arch === 'x86_64' ? 'x64' :
+      arch === 'arm64' ? 'aarch64' :  arch
+
+  return `https://github.com/${repo}/releases/download/${version}/bun-${platform}-${_arch}.zip`
 }

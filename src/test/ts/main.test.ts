@@ -3,8 +3,10 @@ import { temporaryDirectory } from 'tempy'
 
 const test = suite('main')
 const temp = temporaryDirectory()
+const home = temporaryDirectory()
 
 test('main()', async () => {
+  process.env.HOME = home
   process.env.RUNNER_TOOL_CACHE = temp
   process.env.RUNNER_TEMP = temp
   process.env['INPUT_BUN-VERSION'] = '0.1.2'

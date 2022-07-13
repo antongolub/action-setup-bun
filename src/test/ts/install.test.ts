@@ -1,5 +1,7 @@
 import { suite } from 'uvu'
 import * as assert from 'uvu/assert'
+import cp from 'child_process'
+
 import {
   install,
   pickVersion,
@@ -12,14 +14,24 @@ import { temporaryDirectory } from 'tempy'
 
 const test = suite('install')
 const temp = temporaryDirectory()
+const home = temporaryDirectory()
 
 test('install()', async () => {
   process.env.RUNNER_TOOL_CACHE = temp
   process.env.RUNNER_TEMP = temp
+  process.env.HOME = home
 
   assert.match(
-    await install(DEFAULT_REPO, 'bun-v0.1.1', 'darwin', 'x64'),
+    await install(DEFAULT_REPO, 'bun-v0.1.3', process.platform, process.arch),
     /\.bun/
+  )
+
+  assert.equal(
+    cp
+      .execSync('bun -v', { cwd: `${home}/.bun/bin` })
+      .toString()
+      .trim(),
+    '0.1.3'
   )
 })
 
@@ -59,14 +71,42 @@ test('getBunDistUri()', async () => {
     ),
     'https://github.com/Jarred-Sumner/bun-releases-for-updater/releases/download/bun-v0.1.2/bun-darwin-x64.zip'
   )
+  assert.equal(
+    getBunDistUri(
+      'Jarred-Sumner/bun-releases-for-updater',
+      'bun-v0.1.3',
+      'linux',
+      'arm64'
+    ),
+    'https://github.com/Jarred-Sumner/bun-releases-for-updater/releases/download/bun-v0.1.3/bun-linux-aarch64.zip'
+  )
+  assert.equal(
+    getBunDistUri(
+      'Jarred-Sumner/bun-releases-for-updater',
+      'bun-v0.1.3',
+      'linux',
+      'x86_64'
+    ),
+    'https://github.com/Jarred-Sumner/bun-releases-for-updater/releases/download/bun-v0.1.3/bun-linux-x64.zip'
+  )
 })
 
-test('getPlatform()', async () => {
-  assert.equal(await getPlatform(), process.platform)
+test('getPlatform()', () => {
+  assert.equal(getPlatform(), process.platform)
+  assert.equal(getPlatform('linux'), 'linux')
+  assert.equal(getPlatform('darwin'), 'darwin')
+
+  assert.throws(() => getPlatform('Windows_NT'), 'Unsupported arch: Windows_NT')
 })
 
-test('getArch()', async () => {
-  assert.equal(await getArch(), process.arch)
+test('getArch()', () => {
+  assert.equal(getArch(), process.arch)
+  assert.equal(getArch('arm64'), 'arm64')
+  assert.equal(getArch('x64'), 'x64')
+  assert.equal(getArch('x86_64'), 'x86_64')
+  assert.equal(getArch('aarch64'), 'aarch64')
+
+  assert.throws(() => getArch('x86'), 'Unsupported arch: x86')
 })
 
 test.run()

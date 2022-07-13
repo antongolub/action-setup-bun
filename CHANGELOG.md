@@ -1,3 +1,8 @@
+## [1.12.3](https://github.com/antongolub/action-setup-bun/compare/v1.12.2...v1.12.3) (2022-07-13)
+
+### Fixes & improvements
+* docs: mention `oven-sh/misc-test-builds` release stream ([f279831](https://github.com/antongolub/action-setup-bun/commit/f279831253da61407dbeee3b0dede8ea420a8d4f))
+
 ## [1.12.2](https://github.com/antongolub/action-setup-bun/compare/v1.12.1...v1.12.2) (2022-07-13)
 
 ### Fixes & improvements

@@ -1,3 +1,8 @@
+## [1.12.2](https://github.com/antongolub/action-setup-bun/compare/v1.12.1...v1.12.2) (2022-07-13)
+
+### Fixes & improvements
+* fix: fix platform-to-dist mapping ([bebcae8](https://github.com/antongolub/action-setup-bun/commit/bebcae8f9c299bbed387ff86279c4a9de866fb12))
+
 ## [1.12.1](https://github.com/antongolub/action-setup-bun/compare/v1.12.0...v1.12.1) (2022-07-12)
 
 ### Fixes & improvements

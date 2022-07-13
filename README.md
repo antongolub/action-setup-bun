@@ -19,6 +19,7 @@
     bun-version: 0.1.2
 
     # Optional, default is 'Jarred-Sumner/bun-releases-for-updater'
+    # Example: oven-sh/misc-test-builds
     bun-repo: 'Jarred-Sumner/bun-releases-for-updater'
 
     # Override bunfig.toml inners
@@ -49,6 +50,12 @@
 - name: Run script
   run: bun index.js
 ```
+
+### bun-repo
+There are at least 3 known places to fetch bun distributions:
+* [`Jarred-Sumner/bun-releases-for-updater`](https://github.com/Jarred-Sumner/bun-releases-for-updater/releases)
+* [`oven-sh/bun`](https://github.com/oven-sh/bun/releases)
+* [`oven-sh/misc-test-builds`](https://github.com/oven-sh/misc-test-builds/releases)
 
 ### Outputs
 | Name          | Description                              |

@@ -15,7 +15,7 @@
   uses: antongolub/action-setup-bun@v1 # or @v1.x.x
   with:
     # Optional, if empty the latest bun version will be used
-    # Examples: 0.0.77, 0.1.2, >=0.1
+    # Examples: 0.0.77, 0.1.2, >=0.1, *
     bun-version: 0.1.2
 
     # Optional, default is 'Jarred-Sumner/bun-releases-for-updater'

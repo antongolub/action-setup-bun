@@ -50,5 +50,5 @@ export async function saveCache(cachePath: string) {
     return
   }
 
-  core.info(`bun cache saved: ${primaryKey}`)
+  core.info(`bun modules cache saved: ${primaryKey}`)
 }

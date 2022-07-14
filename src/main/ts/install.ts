@@ -38,7 +38,7 @@ export async function install(
   const restored = withCache && (await cache.restoreCache([bunBinDir], binId))
 
   if (restored) {
-    core.info(`${binId} restored from action cache`)
+    core.info(`${binId} binary restored from action cache`)
   } else {
     const bunDist = await getBunDist(repo, version, platform, arch, token)
     const temp = await tc.extractZip(bunDist)
@@ -52,7 +52,7 @@ export async function install(
 
   if (withCache && restored !== binId) {
     await cache.saveCache([bunBinDir], binId)
-    core.info(`${binId} added to action cache`)
+    core.info(`${binId} binary added to action cache`)
   }
 
   core.exportVariable('BUN_INSTALL', BUN_INSTALL)
@@ -90,7 +90,7 @@ export async function getBunDist(
   const file = `bun-${_version}-${platform}-${arch}.zip`
   const cachedBunPath = tc.find('bun', _version, arch)
   if (cachedBunPath) {
-    core.info(`bun ${_version} ${platform} ${arch} found in tool-cache`)
+    core.info(`bun ${file} found in tool-cache`)
     return path.join(cachedBunPath, file)
   }
 

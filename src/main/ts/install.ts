@@ -63,9 +63,9 @@ export async function install(
 
 export async function pickVersion(repo: string, range: string, token?: string) {
   type Tag = { name: string }
-  const authorization = token ? `token ${token}` : undefined
+  const headers = token ? { Authorizarion: `token ${token}` } : undefined
   const url = `https://api.github.com/repos/${repo}/tags?per_page=1000&page=1`
-  const tags = (await http.getJson(url, { authorization })).result as Tag[]
+  const tags = (await http.getJson(url, headers)).result as Tag[]
   const _range = range === 'latest' ? '*' : range
 
   if (semver.validRange(_range) === null) {

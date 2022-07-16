@@ -15,7 +15,9 @@ export async function restoreCache(
   const lfHash = await glob.hashFiles(lfPath)
   const primaryKey = `bun-cache-${platform}-${arch}-${lfHash}`
 
-  core.debug(`cache key is ${primaryKey}`)
+  core.debug(`bun modules cache key is ${primaryKey}`)
+  core.debug(`bun modules cache path is ${cachePath}`)
+  core.saveState(keys.CACHE_PATH, cachePath)
   core.saveState(keys.CACHE_PRIMARY_KEY, primaryKey)
 
   const cacheKey = await cache.restoreCache([cachePath], primaryKey)

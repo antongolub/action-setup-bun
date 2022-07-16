@@ -2,7 +2,7 @@ import * as core from '@actions/core'
 import path from 'path'
 import { install, pickVersion, getPlatform, getArch } from './install.js'
 import { restoreCache } from './cache.js'
-import { keys, DEFAULT_REPO, DEFAULT_VERSION } from './constants.js'
+import { DEFAULT_REPO, DEFAULT_VERSION } from './constants.js'
 import { getConfig } from './config.js'
 import { getInput } from './util.js'
 
@@ -21,9 +21,6 @@ async function main() {
     const version =         await pickVersion(repo, range)
     const bunInstallPath =  await install(repo, version, platform, arch, token, cacheBin)
     const bunCachePath =    path.resolve(config?.install?.cache?.dir || path.join(bunInstallPath, 'install/cache'))
-
-    core.saveState(keys.INSTALL_PATH, bunInstallPath)
-    core.saveState(keys.CACHE_PATH, bunCachePath)
 
     cache && (await restoreCache(bunCachePath, platform, arch))
 

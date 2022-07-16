@@ -18,7 +18,7 @@ async function main() {
     const token =     getInput('token')
     const config =    getConfig(getInput('bun-config') || getInput('config'))
 
-    const version =         await pickVersion(repo, range)
+    const version =         await pickVersion(repo, range, token)
     const bunInstallPath =  await install(repo, version, platform, arch, token, cacheBin)
     const bunCachePath =    path.resolve(config?.install?.cache?.dir || path.join(bunInstallPath, 'install/cache'))
 

@@ -61,10 +61,11 @@ export async function install(
   return BUN_INSTALL
 }
 
-export async function pickVersion(repo: string, range: string) {
+export async function pickVersion(repo: string, range: string, token?: string) {
   type Tag = { name: string }
+  const authorization = token ? `token ${token}` : undefined
   const url = `https://api.github.com/repos/${repo}/tags?per_page=1000&page=1`
-  const tags = (await http.getJson(url)).result as Tag[]
+  const tags = (await http.getJson(url, { authorization })).result as Tag[]
   const _range = range === 'latest' ? '*' : range
 
   if (semver.validRange(_range) === null) {

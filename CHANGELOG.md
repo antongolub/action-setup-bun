@@ -1,3 +1,9 @@
+## [1.12.4](https://github.com/antongolub/action-setup-bun/compare/v1.12.3...v1.12.4) (2022-07-16)
+
+### Fixes & improvements
+* fix: pass auth token to tags read req ([70d8e8d](https://github.com/antongolub/action-setup-bun/commit/70d8e8dd932f6aaa0bf02531cdfd575ac2eb4dc8))
+* refactor: tweak up cache state markers ([afabb21](https://github.com/antongolub/action-setup-bun/commit/afabb21853bbd2abf621582c09dd81fa25e0787b))
+
 ## [1.12.3](https://github.com/antongolub/action-setup-bun/compare/v1.12.2...v1.12.3) (2022-07-13)
 
 ### Fixes & improvements

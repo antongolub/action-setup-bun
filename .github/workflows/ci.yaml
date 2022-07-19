@@ -4,6 +4,7 @@ name: CI
 on: [push, pull_request]
 jobs:
   test_push:
+    if: github.event_name == 'push'
     name: Test on push
     runs-on: ubuntu-20.04
     steps:
@@ -40,6 +41,7 @@ jobs:
             ${{github.workspace}}/coverage/lcov.info:lcov
 
   test_pr:
+    if: github.event_name == 'pull_request'
     name: Test PR (${{ matrix.os }})
     strategy:
       matrix:

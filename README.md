@@ -58,6 +58,13 @@ There are at least 3 known places to fetch bun distributions:
 * [`oven-sh/bun`](https://github.com/oven-sh/bun/releases)
 * [`oven-sh/misc-test-builds`](https://github.com/oven-sh/misc-test-builds/releases)
 
+### $HOME
+The `env.HOME` is used to store the `bun` binary (`${HOME}/.bun/bin`). If you want to assign another directory, you can override this `env` option.
+```yaml
+env:
+  HOME: '/custom/path'
+```
+
 ### Outputs
 | Name          | Description                              |
 |---------------|------------------------------------------|

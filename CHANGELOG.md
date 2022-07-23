@@ -1,3 +1,9 @@
+## [1.12.5](https://github.com/antongolub/action-setup-bun/compare/v1.12.4...v1.12.5) (2022-07-23)
+
+### Fixes & improvements
+* docs: mention `$HOME` customization ([1c002a8](https://github.com/antongolub/action-setup-bun/commit/1c002a8e5cd7bdfaf34ccfce9a12609ba0cb9025))
+* docs: add arch option examples ([f73d275](https://github.com/antongolub/action-setup-bun/commit/f73d275c379657bbb0eb0a4144a972e00dc4c4a2))
+
 ## [1.12.4](https://github.com/antongolub/action-setup-bun/compare/v1.12.3...v1.12.4) (2022-07-16)
 
 ### Fixes & improvements

@@ -41,6 +41,7 @@
     platform: 'linux'
 
     # Optional, default is process.arch
+    # Examples: x64, arm64
     arch: 'x64'
     
     # Authenticated requests get a higher rate limit

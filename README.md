@@ -72,5 +72,8 @@ env:
 | `cache-hit`   | if the bun cache was hit: `true / false` |
 | `error`       | if an error occurred, the error message  |
 
+### Debug
+[This flag](https://github.com/actions/toolkit/blob/master/docs/action-debugging.md) can be enabled by setting the secret `ACTIONS_STEP_DEBUG` to `true`.
+
 ## License
 [MIT](LICENSE)

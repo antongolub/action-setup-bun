@@ -21,7 +21,7 @@ jobs:
       - name: Setup Bun
         uses: ./
         with:
-          token: ${{ github.token }}
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Run script
         run: bun -v

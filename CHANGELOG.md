@@ -1,3 +1,8 @@
+## [1.12.6](https://github.com/antongolub/action-setup-bun/compare/v1.12.5...v1.12.6) (2022-08-08)
+
+### Fixes & improvements
+* perf: tech release ([e6460d2](https://github.com/antongolub/action-setup-bun/commit/e6460d23a706d78674d7e21a9c219363b8707b36))
+
 ## [1.12.5](https://github.com/antongolub/action-setup-bun/compare/v1.12.4...v1.12.5) (2022-07-23)
 
 ### Fixes & improvements

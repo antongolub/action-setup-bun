@@ -1,3 +1,8 @@
+## [1.12.7](https://github.com/antongolub/action-setup-bun/compare/v1.12.6...v1.12.7) (2022-08-08)
+
+### Fixes & improvements
+* fix: fix auth header ([bfd53be](https://github.com/antongolub/action-setup-bun/commit/bfd53bea4f4c184e5e50729dde7f40e823fd51e2))
+
 ## [1.12.6](https://github.com/antongolub/action-setup-bun/compare/v1.12.5...v1.12.6) (2022-08-08)
 
 ### Fixes & improvements

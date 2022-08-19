@@ -1,3 +1,8 @@
+## [1.12.8](https://github.com/antongolub/action-setup-bun/compare/v1.12.7...v1.12.8) (2022-08-19)
+
+### Fixes & improvements
+* fix: bump @actions/core from 1.9.0 to 1.9.1 to fix CVE-2022-35954 (#13) ([aa8abd2](https://github.com/antongolub/action-setup-bun/commit/aa8abd253492ad3103a02bf9e513a2b065c925cb))
+
 ## [1.12.7](https://github.com/antongolub/action-setup-bun/compare/v1.12.6...v1.12.7) (2022-08-08)
 
 ### Fixes & improvements

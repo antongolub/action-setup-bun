@@ -25,7 +25,7 @@
     # Override bunfig.toml inners
     # Optional. JSON-formatted string as input
     # See: https://github.com/oven-sh/bun#bunfigtoml
-    bun-config: '{"install: {"production": false}}'
+    bun-config: '{"install": {"production": false}}'
     
     # Attach $BUN_INSTALL/install/cache to action/cache
     # Optional, defaults to false

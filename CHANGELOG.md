@@ -1,3 +1,8 @@
+## [1.12.9](https://github.com/antongolub/action-setup-bun/compare/v1.12.8...v1.12.9) (2023-01-28)
+
+### Fixes & improvements
+* docs: add missing quotation in example (#35) ([912930c](https://github.com/antongolub/action-setup-bun/commit/912930cb39b7bb03136b98ee87a2045cc762257c))
+
 ## [1.12.8](https://github.com/antongolub/action-setup-bun/compare/v1.12.7...v1.12.8) (2022-08-19)
 
 ### Fixes & improvements

@@ -4,9 +4,8 @@ import TOML from '@iarna/toml'
 import * as core from '@actions/core'
 import { CONFIG_NAME } from './constants.js'
 
-const cwd = process.env.GITHUB_WORKSPACE || process.cwd()
-
 export function readConfig(): any {
+  const cwd = process.env.GITHUB_WORKSPACE || process.cwd()
   const configPath = path.join(cwd, CONFIG_NAME)
 
   try {
@@ -19,10 +18,18 @@ export function readConfig(): any {
 
 export function writeConfig(config: any) {
   if (!config) return
+  const cwd = process.env.GITHUB_WORKSPACE || process.cwd()
   const configPath = path.join(cwd, CONFIG_NAME)
 
-  core.info(`bunfig.toml saved: ${configPath}`)
-  fs.writeFileSync(configPath, TOML.stringify(JSON.parse(config)))
+  try {
+    const data = JSON.parse(config)
+    fs.writeFileSync(configPath, TOML.stringify(data))
+    core.info(`bunfig.toml saved: ${configPath}`)
+  } catch (e) {
+    core.error('bun config seems corrupted')
+
+    throw e
+  }
 }
 
 export function getConfig(config: any) {

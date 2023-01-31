@@ -10,7 +10,7 @@ test('getConfig()', () => {
   process.env.GITHUB_WORKSPACE = temp
 
   assert.equal(getConfig(''), null)
-  assert.equal(getConfig('{"foo": "bar"}'), {foo: 'bar'})
+  assert.equal(getConfig('{"foo": "bar"}'), { foo: 'bar' })
   assert.throws(() => getConfig('{'), /Unexpected end of JSON input/)
 
   delete process.env.GITHUB_WORKSPACE

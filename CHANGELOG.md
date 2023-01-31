@@ -1,3 +1,8 @@
+## [1.13.0](https://github.com/antongolub/action-setup-bun/compare/v1.12.9...v1.13.0) (2023-01-31)
+
+### Features
+* feat: improve bun config validation errors logging ([b9b62d1](https://github.com/antongolub/action-setup-bun/commit/b9b62d1d55e9844b0e4f20ab13ee5fc64ec793b8))
+
 ## [1.12.9](https://github.com/antongolub/action-setup-bun/compare/v1.12.8...v1.12.9) (2023-01-28)
 
 ### Fixes & improvements

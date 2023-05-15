@@ -37,10 +37,10 @@
     "@actions/http-client": "^2.1.0",
     "@actions/tool-cache": "^2.0.1",
     "@iarna/toml": "^2.2.5",
-    "semver": "^7.5.0"
+    "semver": "^7.5.1"
   },
   "devDependencies": {
-    "@types/semver": "^7.3.13",
+    "@types/semver": "^7.5.0",
     "@vercel/ncc": "^0.36.1",
     "c8": "^7.13.0",
     "loadr": "^0.1.1",

@@ -6,6 +6,7 @@ import * as glob from '@actions/glob'
 import * as tc from '@actions/tool-cache'
 import * as cache from '@actions/cache'
 import { HttpClient } from '@actions/http-client'
+import { rename } from './util'
 
 const http = new HttpClient('@actions/http-client')
 
@@ -46,7 +47,7 @@ export async function install(
 
     if (bun) {
       await fs.mkdir(bunBinDir, { recursive: true })
-      await fs.rename(bun, `${bunBinDir}/bun`)
+      await rename(bun, `${bunBinDir}/bun`)
     }
   }
 

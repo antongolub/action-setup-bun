@@ -11,7 +11,7 @@ test('getConfig()', () => {
 
   assert.equal(getConfig(''), null)
   assert.equal(getConfig('{"foo": "bar"}'), { foo: 'bar' })
-  assert.throws(() => getConfig('{'), /Unexpected end of JSON input/)
+  assert.throws(() => getConfig('('), /Unexpected token/)
 
   delete process.env.GITHUB_WORKSPACE
 })

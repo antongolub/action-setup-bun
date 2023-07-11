@@ -8,7 +8,7 @@ import { keys, LOCKFILE_NAME } from './constants.js'
 export async function restoreCache(
   cachePath: string,
   platform: string,
-  arch: string
+  arch: string,
 ) {
   const cwd = process.env.GITHUB_WORKSPACE || process.cwd()
   const lfPath = path.join(cwd, LOCKFILE_NAME)
@@ -38,7 +38,7 @@ export async function saveCache(cachePath: string) {
 
   if (primaryKey === state) {
     core.info(
-      `bun modules cache state has not been changed, save skipped: ${primaryKey}`
+      `bun modules cache state has not been changed, save skipped: ${primaryKey}`,
     )
     return
   }

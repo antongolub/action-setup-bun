@@ -1,3 +1,8 @@
+## [1.13.1](https://github.com/antongolub/action-setup-bun/compare/v1.13.0...v1.13.1) (2023-07-11)
+
+### Fixes & improvements
+* fix: handle fs.rename cross links ([f755f0f](https://github.com/antongolub/action-setup-bun/commit/f755f0f18e338cb432e15fc30d26079f36139df7))
+
 ## [1.13.0](https://github.com/antongolub/action-setup-bun/compare/v1.12.9...v1.13.0) (2023-01-31)
 
 ### Features

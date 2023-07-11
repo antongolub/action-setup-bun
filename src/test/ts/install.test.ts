@@ -23,7 +23,7 @@ test('install()', async () => {
 
   assert.match(
     await install(DEFAULT_REPO, 'bun-v0.1.3', process.platform, process.arch),
-    /\.bun/
+    /\.bun/,
   )
 
   assert.equal(
@@ -31,18 +31,18 @@ test('install()', async () => {
       .execSync('bun -v', { cwd: `${home}/.bun/bin` })
       .toString()
       .trim(),
-    '0.1.3'
+    '0.1.3',
   )
 })
 
 test('pickVersion()', async () => {
   assert.equal(
     await pickVersion('Jarred-Sumner/bun-releases-for-updater', '0.1.2'),
-    'bun-v0.1.2'
+    'bun-v0.1.2',
   )
   assert.equal(
     await pickVersion('Jarred-Sumner/bun-releases-for-updater', '>=0.1 <0.1.2'),
-    'bun-v0.1.1'
+    'bun-v0.1.1',
   )
 
   try {
@@ -50,7 +50,7 @@ test('pickVersion()', async () => {
   } catch (e: any) {
     assert.equal(
       e.message,
-      'Version 10 not found in Jarred-Sumner/bun-releases-for-updater'
+      'Version 10 not found in Jarred-Sumner/bun-releases-for-updater',
     )
   }
 
@@ -67,27 +67,27 @@ test('getBunDistUri()', async () => {
       'Jarred-Sumner/bun-releases-for-updater',
       'bun-v0.1.2',
       'darwin',
-      'x64'
+      'x64',
     ),
-    'https://github.com/Jarred-Sumner/bun-releases-for-updater/releases/download/bun-v0.1.2/bun-darwin-x64.zip'
+    'https://github.com/Jarred-Sumner/bun-releases-for-updater/releases/download/bun-v0.1.2/bun-darwin-x64.zip',
   )
   assert.equal(
     getBunDistUri(
       'Jarred-Sumner/bun-releases-for-updater',
       'bun-v0.1.3',
       'linux',
-      'arm64'
+      'arm64',
     ),
-    'https://github.com/Jarred-Sumner/bun-releases-for-updater/releases/download/bun-v0.1.3/bun-linux-aarch64.zip'
+    'https://github.com/Jarred-Sumner/bun-releases-for-updater/releases/download/bun-v0.1.3/bun-linux-aarch64.zip',
   )
   assert.equal(
     getBunDistUri(
       'Jarred-Sumner/bun-releases-for-updater',
       'bun-v0.1.3',
       'linux',
-      'x86_64'
+      'x86_64',
     ),
-    'https://github.com/Jarred-Sumner/bun-releases-for-updater/releases/download/bun-v0.1.3/bun-linux-x64.zip'
+    'https://github.com/Jarred-Sumner/bun-releases-for-updater/releases/download/bun-v0.1.3/bun-linux-x64.zip',
   )
 })
 

@@ -30,7 +30,7 @@ export async function install(
   platform: string,
   arch: string,
   token?: string,
-  withCache?: string
+  withCache?: string,
 ) {
   const HOME = process.env['HOME']
   const BUN_INSTALL = `${HOME}/.bun`
@@ -74,7 +74,7 @@ export async function pickVersion(repo: string, range: string, token?: string) {
   }
 
   const version = tags.find(({ name }) =>
-    semver.satisfies(name.replace('bun-', ''), _range)
+    semver.satisfies(name.replace('bun-', ''), _range),
   )
   if (!version) throw new Error(`Version ${range} not found in ${repo}`)
 
@@ -86,7 +86,7 @@ export async function getBunDist(
   version: string,
   platform: string,
   arch: string,
-  token?: string
+  token?: string,
 ): Promise<string> {
   const _version = version.replace('bun-', '')
   const file = `bun-${_version}-${platform}-${arch}.zip`
@@ -111,7 +111,7 @@ export function getBunDistUri(
   repo: string,
   version: string,
   platform: string,
-  arch: string
+  arch: string,
 ) {
   // prettier-ignore
   const _arch =

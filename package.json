@@ -47,7 +47,7 @@
     "prettier": "^3.1.0",
     "tempy": "^3.1.0",
     "tsm": "^2.3.0",
-    "typescript": "^5.2.2",
+    "typescript": "^5.3.2",
     "uvu": "^0.5.6"
   }
 }

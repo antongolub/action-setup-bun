@@ -11,7 +11,7 @@ jobs:
     name: Action test (${{ matrix.os }})
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build
         run: |
@@ -21,7 +21,7 @@ jobs:
       - name: Setup Bun
         uses: ./
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run script
         run: bun -v

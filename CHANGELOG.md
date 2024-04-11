@@ -1,3 +1,8 @@
+## [1.13.2](https://github.com/antongolub/action-setup-bun/compare/v1.13.1...v1.13.2) (2024-04-11)
+
+### Fixes & improvements
+* perf: up deps, use node20 as runner ([e211807](https://github.com/antongolub/action-setup-bun/commit/e211807eeeab3ec22bcfa3abf208c12a53e03c93))
+
 ## [1.13.1](https://github.com/antongolub/action-setup-bun/compare/v1.13.0...v1.13.1) (2023-07-11)
 
 ### Fixes & improvements

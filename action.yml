@@ -37,7 +37,7 @@ outputs:
     description: 'The error message if any'
 
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'target/main/index.js'
   post: 'target/post/index.js'
   post-if: success()

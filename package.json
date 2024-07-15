@@ -42,12 +42,12 @@
   "devDependencies": {
     "@types/semver": "^7.5.8",
     "@vercel/ncc": "^0.38.1",
-    "c8": "^9.1.0",
+    "c8": "^10.1.2",
     "loadr": "^0.1.1",
-    "prettier": "^3.3.1",
+    "prettier": "^3.3.3",
     "tempy": "^3.1.0",
     "tsm": "^2.3.0",
-    "typescript": "^5.4.5",
+    "typescript": "^5.5.3",
     "uvu": "^0.5.6"
   }
 }

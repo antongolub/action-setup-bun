@@ -37,12 +37,12 @@ test('install()', async () => {
 
 test('pickVersion()', async () => {
   assert.equal(
-    await pickVersion('Jarred-Sumner/bun-releases-for-updater', '0.1.2'),
-    'bun-v0.1.2',
+    await pickVersion('Jarred-Sumner/bun-releases-for-updater', '1.1.19'),
+    'bun-v1.1.19',
   )
   assert.equal(
-    await pickVersion('Jarred-Sumner/bun-releases-for-updater', '>=0.1 <0.1.2'),
-    'bun-v0.1.1',
+    await pickVersion('Jarred-Sumner/bun-releases-for-updater', '>=0.1 <1.1.19'),
+    'bun-v1.1.18',
   )
 
   try {

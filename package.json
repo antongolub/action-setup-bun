@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@types/semver": "^7.5.8",
-    "@vercel/ncc": "^0.38.2",
+    "@vercel/ncc": "^0.38.3",
     "c8": "^10.1.2",
     "loadr": "^0.1.1",
     "prettier": "^3.3.3",

@@ -37,7 +37,7 @@
     "@actions/http-client": "^2.2.3",
     "@actions/tool-cache": "^2.0.1",
     "@iarna/toml": "^2.2.5",
-    "semver": "^7.6.3"
+    "semver": "^7.7.1"
   },
   "devDependencies": {
     "@types/semver": "^7.5.8",

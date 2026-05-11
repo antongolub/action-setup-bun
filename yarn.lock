@@ -49,13 +49,21 @@
     "@actions/core" "^1.9.1"
     minimatch "^3.0.4"
 
-"@actions/http-client@^2.0.1", "@actions/http-client@^2.1.1", "@actions/http-client@^2.2.3":
+"@actions/http-client@^2.0.1", "@actions/http-client@^2.1.1":
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@actions/http-client/-/http-client-2.2.3.tgz#31fc0b25c0e665754ed39a9f19a8611fc6dab674"
   integrity sha512-mx8hyJi/hjFvbPokCg4uRd4ZX78t+YyRPtnKWwIl+RzNaVuFpQHfmlGVfsKEJN8LwTCvL+DfVgAM04XaHkm6bA==
   dependencies:
     tunnel "^0.0.6"
     undici "^5.25.4"
+
+"@actions/http-client@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@actions/http-client/-/http-client-4.0.1.tgz#22a23a7625ba1326d9ba154012ca8301a27f88a3"
+  integrity sha512-+Nvd1ImaOZBSoPbsUtEhv+1z99H12xzncCkz0a3RuehINE81FZSe2QTj3uvAPTcJX/SCzUQHQ0D1GrPMbrPitg==
+  dependencies:
+    tunnel "^0.0.6"
+    undici "^6.23.0"
 
 "@actions/io@^1.0.1", "@actions/io@^1.1.1":
   version "1.1.2"
@@ -1030,6 +1038,11 @@ undici@^5.25.4:
   integrity sha512-450yJxT29qKMf3aoudzFpIciqpx6Pji3hEWaXqXmanbXF58LTAGCKxcJjxMXWu3iG+Mudgo3ZUfDB6YDFd/dAw==
   dependencies:
     "@fastify/busboy" "^2.0.0"
+
+undici@^6.23.0:
+  version "6.25.0"
+  resolved "https://registry.yarnpkg.com/undici/-/undici-6.25.0.tgz#8c4efb8c998dc187fc1cfb5dde1ef19a211849fb"
+  integrity sha512-ZgpWDC5gmNiuY9CnLVXEH8rl50xhRCuLNA97fAUnKi8RRuV4E6KG31pDTsLVUKnohJE0I3XDrTeEydAXRw47xg==
 
 unique-string@^3.0.0:
   version "3.0.0"
